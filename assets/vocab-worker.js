@@ -113,9 +113,9 @@ function ep_positive(W, f) {
 
 function project_prior(W, b, x) {
   let [μ, v] = [W.mean, W.variance]
-  μ = -μ * x
-  v = pow(x, 2) * v
-  return new Normal(μ + b.μ, v + pow(b.σ, 2))
+  μ = -μ * x;
+  v = pow(x, 2) * v;
+  return new Normal(μ + b.mean, v + b.variance)
 }
 
 function update_prior(p, y, multi=true) {
@@ -127,7 +127,7 @@ function update_prior(p, y, multi=true) {
     if (multi) {
         let Z_ = 1/4 + 3/4*Z;
         Ex = (1/4*μ + 3/4*Ex*Z)/Z_;
-        Ex2 = (1/4*(μ^2+σ^2) + 3/4*Ex2*Z)/Z_;
+        Ex2 = (1/4*(pow(μ,2)+pow(σ,2)) + 3/4*Ex2*Z)/Z_;
         Z = Z_;
     }
     if (!y) {
@@ -136,6 +136,15 @@ function update_prior(p, y, multi=true) {
         Ex2 = (pow(μ,2)+pow(σ,2)-Ex2*Z)/Z_;
     }
     return new Normal(Ex, Ex2 - pow(Ex, 2));
+}
+
+function update_Wb(W, b, p, x) {
+    let [μ, σ, μw, σw, μb, σb] = [p.mean, sqrt(p.variance), W.mean, sqrt(W.variance), b.mean, sqrt(b.variance)];
+    let Ew = (1/(pow(σ, 2)+(pow(σb, 2)+(pow(x, 2)*pow(σw, 2)))))*((μw*(pow(σ, 2)+pow(σb, 2)))+(x*((-μ+μb)*pow(σw, 2))));
+    let vw = (pow(σ, 2)+pow(σb, 2))*(pow(σw, 2)*(1/(pow(σ, 2)+(pow(σb, 2)+(pow(x, 2)*pow(σw, 2))))));
+    let Eb = μb+((μ+(-μb+(x*μw)))*(pow(σb, 2)*(1/(pow(σ, 2)+(pow(σb, 2)+(pow(x, 2)*pow(σw, 2)))))));
+    let vb = pow(σb, 2)+-(pow(σb, 4)*(1/(pow(σ, 2)+(pow(σb, 2)+(pow(x, 2)*pow(σw, 2))))));
+    return [new Normal(Ew, vw), new Normal(Eb, vb)];
 }
 
 // ϵᵢ ~ Normal(0, 1)
@@ -152,8 +161,14 @@ async function main() {
     words = await resp.json();
     // console.log(words);
     // console.log(ep_positive(new Normal(0, 1), new Normal(0, Inf)));
-    console.log(update_prior(new Normal(0, 1), true));
-    console.log(update_prior(new Normal(0, 1), false));
+    let W = new Normal(1e-3, pow(1e-3, 2));
+    let b = new Normal(2, pow(1, 2));
+    let [x, y] = [1000, true];
+    let p = project_prior(W, b, x);
+    p = update_prior(p, y);
+    [W, b] = update_Wb(W, b, p, x);
+    console.log([W.mean, sqrt(W.variance)]);
+    console.log([b.mean, sqrt(b.variance)]);
 }
 
 main();
