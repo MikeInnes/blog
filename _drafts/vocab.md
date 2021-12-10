@@ -74,3 +74,10 @@ foo bar baz
         top: 3px;
     }
 </style>
+
+<script>
+let worker = new Worker('/assets/vocab-worker.js');
+document.querySelectorAll('.vocab-test button').forEach(function (b,i) {
+    b.onclick = () => worker.postMessage(i+1);
+});
+</script>
