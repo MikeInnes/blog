@@ -189,6 +189,18 @@ class EP {
         });
         return this.W.isapprox(W) && this.b.isapprox(b);
     }
+    converge() {
+        while (!this.iterate());
+    }
+    push(x, y) {
+        let [W, b, Wi, bi] = ep_update(this.W, this.b, new Normal(0., Inf), new Normal(0., Inf), x, y);
+        [this.W, this.b] = [W, b];
+        this.xs.push(x);
+        this.ys.push(y);
+        this.Ws.push(Wi);
+        this.bs.push(bi);
+        this.converge();
+    }
 }
 
 // Main script
@@ -199,12 +211,12 @@ let words;
 async function main() {
     let resp = await fetch('/assets/vocab.json');
     words = await resp.json();
-    // console.log(words);
-    // console.log(ep_positive(new Normal(0, 1), new Normal(0, Inf)));
     let W = new Normal(1e-3, pow(1e-3, 2));
     let b = new Normal(2, pow(1, 2));
-    let [x, y] = [1000, true];
-    console.log(ep_update(W, b, new Normal(0, Inf), new Normal(0, Inf), x, y));
+    let ep = new EP(W, b);
+    ep.push(1000, true);
+    ep.push(1500, false);
+    console.log([ep.W, ep.b]);
 }
 
 main();
