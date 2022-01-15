@@ -6,6 +6,12 @@ let Inf = Infinity;
 let exp = Math.exp;
 let pow = Math.pow;
 let sqrt = Math.sqrt;
+let abs = Math.abs;
+
+function isapprox(x, y) {
+    let eps = 1.4901161193847656e-8;
+    return x == y || (abs(x-y) <= eps*Math.max(abs(x), abs(y)));
+}
 
 function erf(x) {
     // save the sign of x
@@ -81,10 +87,16 @@ class Normal {
         let [mean, std] = [this.mean, sqrt(this.variance)];
         return Phi((x - mean) / std);
     }
+    isapprox(that) {
+        return isapprox(this.mean, that.mean) && isapprox(this.variance, that.variance);
+    }
 }
 
 // EP update equations
 // -------------------
+// ϵᵢ ~ Normal(0, 1)
+// i = -W*xᵢ + b + ϵᵢ
+// ŷᵢ = i > 0
 
 function gaussdiv(a, b) {
     let [t, u] = [1/a.variance, 1/b.variance]
@@ -147,9 +159,37 @@ function update_Wb(W, b, p, x) {
     return [new Normal(Ew, vw), new Normal(Eb, vb)];
 }
 
-// ϵᵢ ~ Normal(0, 1)
-// i = -W*xᵢ + b + ϵᵢ
-// ŷᵢ = i > 0
+function ep_update(W, b, Wi, bi, x, y) {
+  let [W_, b_] = [gaussdiv(W, Wi), gaussdiv(b, bi)];
+  let f = project_prior(W_, b_, x);
+  let f_ = update_prior(f, y);
+  if (!candiv(f_, f)) return [W, b, Wi, bi];
+  let df = gaussdiv(f_, f);
+  [W, b] = update_Wb(W_, b_, df, x)
+  Wi = gaussdiv(W, W_)
+  bi = gaussdiv(b, b_)
+  return [W, b, Wi, bi];
+}
+
+class EP {
+    constructor(W, b) {
+        this.W = W;
+        this.b = b;
+        this.f = new Normal(0, Inf);
+        this.Ws = [];
+        this.bs = [];
+        this.xs = [];
+        this.ys = [];
+    }
+    iterate() {
+        const [W, b] = [this.W, this.b];
+        [this.W, this.f] = ep_positive(this.W, this.f);
+        this.xs.forEach((_, i) => {
+            [this.W, this.b, this.Ws[i], this.bs[i]] = ep_update(this.W, this.b, this.Ws[i], this.bs[i], this.xs[i], this.ys[i]);
+        });
+        return this.W.isapprox(W) && this.b.isapprox(b);
+    }
+}
 
 // Main script
 // -----------
@@ -164,11 +204,7 @@ async function main() {
     let W = new Normal(1e-3, pow(1e-3, 2));
     let b = new Normal(2, pow(1, 2));
     let [x, y] = [1000, true];
-    let p = project_prior(W, b, x);
-    p = update_prior(p, y);
-    [W, b] = update_Wb(W, b, p, x);
-    console.log([W.mean, sqrt(W.variance)]);
-    console.log([b.mean, sqrt(b.variance)]);
+    console.log(ep_update(W, b, new Normal(0, Inf), new Normal(0, Inf), x, y));
 }
 
 main();
