@@ -87,6 +87,9 @@ class Normal {
         let [mean, std] = [this.mean, sqrt(this.variance)];
         return Phi((x - mean) / std);
     }
+    quantile(p) {
+        return this.mean - (sqrt(this.variance) * erfcinv(2 * p) * sqrt(2));
+    }
     isapprox(that) {
         return isapprox(this.mean, that.mean) && isapprox(this.variance, that.variance);
     }
@@ -203,6 +206,24 @@ class EP {
     }
 }
 
+function wcount(W, b, x = 1) {
+    [W, b] = [W.mean, b.mean];
+    let bWx = b - W*x;
+    return 1/W*((bWx)*Phi(bWx)+phi(bWx));
+}
+
+function quantile(W, b, p = 0.05) {
+    let r = 0;
+    for (let x = 1; x <= 200000; x++) {
+        r += Phi(project_prior(W, b, x).quantile(p));
+    }
+    return r;
+}
+
+function confidence(W, b) {
+    return [quantile(W, b, 0.05), quantile(W, b, 0.95)];
+}
+
 // Main script
 // -----------
 
@@ -217,6 +238,8 @@ async function main() {
     ep.push(1000, true);
     ep.push(1500, false);
     console.log([ep.W, ep.b]);
+    console.log(wcount(ep.W, ep.b));
+    console.log(confidence(ep.W, ep.b));
 }
 
 main();
