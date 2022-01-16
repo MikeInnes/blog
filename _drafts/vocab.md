@@ -8,7 +8,7 @@ foo bar baz
 <!-- HTML buttons -->
 <div class="vocab-test">
     <div class="test-word">word</div>
-    <div class="test-help">which word has a similar meaning?</div>
+    <div class="test-help">which word has the closest meaning?</div>
     <div class="test-buttons">
         <div class="test-buttons-row">
             <button>synonym</button>
@@ -22,7 +22,7 @@ foo bar baz
 </div>
 
 <p>
-Right now we think you know about <b>42,000</b> words (between <b>36,000</b> and <b>48,000</b>).
+Right now we think you know about <span class="vocab-mean">42,000</span> words (between <span class="vocab-lower">36,000</span> and <span class="vocab-upper">48,000</span>).
 </p>
 
 foo bar baz
@@ -73,11 +73,44 @@ foo bar baz
         position: relative;
         top: 3px;
     }
+    .vocab-mean, .vocab-lower, .vocab-upper {
+        font-weight: bold;
+    }
 </style>
 
 <script>
+let id = null;
+let answerid = null;
 let worker = new Worker('/assets/vocab-worker.js');
+
+function format(n) {
+    return Math.round(n).toLocaleString(undefined, {maximumSignificantDigits: 2});
+}
+
+function question(data) {
+    id = data.id;
+    answerid = Math.floor(Math.random() * 4);
+    document.querySelector('.vocab-test .test-word').innerText = data.word;
+    document.querySelectorAll('.vocab-test button').forEach(function (b,i) {
+        if (i === answerid) {
+            b.innerText = data.answer;
+        } else {
+            b.innerText = data.answers.pop();
+        }
+    });
+    document.querySelector('.vocab-mean').innerText = format(data.bounds[0]);
+    document.querySelector('.vocab-lower').innerText = format(data.bounds[1]);
+    document.querySelector('.vocab-upper').innerText = format(data.bounds[2]);
+}
+
+function answer(i) {
+    console.log(i === answerid ? "correct" : "incorrect");
+    worker.postMessage({id, result: i === answerid});
+}
+
+worker.onmessage = ({data}) => question(data);
+
 document.querySelectorAll('.vocab-test button').forEach(function (b,i) {
-    b.onclick = () => worker.postMessage(i+1);
+    b.onclick = () => answer(i);
 });
 </script>

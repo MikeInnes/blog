@@ -220,28 +220,77 @@ function quantile(W, b, p = 0.05) {
     return r;
 }
 
-function confidence(W, b) {
-    return [quantile(W, b, 0.05), quantile(W, b, 0.95)];
-}
-
 // Main script
 // -----------
 
-let words;
+function findmin(xs, f) {
+    let min = Infinity;
+    let bestx = null;
+    xs.forEach((x, i) => {
+        let score = f(x);
+        if (score < min) {
+            min = score;
+            bestx = x;
+        }
+    });
+    return bestx;
+}
+
+function pickword(ep, words, seen) {
+    let cs = words.map((_, i) => i).filter(i => !seen.has(i));
+    if (ep.W.mean < 0) {
+        return cs[cs.length - 1]
+    } else {
+        let r = ep.b.mean / ep.W.mean;
+        return findmin(cs, i => abs(words[i][0] - r));
+    }
+}
+
+function answers(words, i) {
+    let [rank, pos, word, syn] = words[i];
+    let candidates = words.filter(w => w[1] == pos && w[3] !== word && w[3] !== syn);
+    candidates.sort((a, b) => abs(a[0]-rank) - abs(b[0]-rank));
+    return candidates.slice(0, 3).map(w => w[3]);
+}
+
+function question(ep, words, seen) {
+    let i = pickword(ep, words, seen);
+    postMessage({
+        id: i,
+        word: words[i][2],
+        answer: words[i][3],
+        answers: answers(words, i),
+        bounds: [wcount(ep.W, ep.b), quantile(ep.W, ep.b, 0.05), quantile(ep.W, ep.b, 0.95)]
+    });
+    waitForAnswer(ep, words, seen);
+}
+
+function waitForAnswer(ep, words, seen) {
+    onmessage = function ({data: {id, result}}) {
+        if (seen.has(id)) return;
+        seen.add(id);
+        ep.push(words[id][0], result);
+        question(ep, words, seen);
+    };
+}
 
 async function main() {
     let resp = await fetch('/assets/vocab.json');
-    words = await resp.json();
+    let words = await resp.json();
+    let seen = new Set();
+
     let W = new Normal(1e-3, pow(1e-3, 2));
     let b = new Normal(2, pow(1, 2));
     let ep = new EP(W, b);
-    ep.push(1000, true);
-    ep.push(1500, false);
-    console.log([ep.W, ep.b]);
-    console.log(wcount(ep.W, ep.b));
-    console.log(confidence(ep.W, ep.b));
+
+    question(ep, words, seen);
+
+    // console.log(words[pickword(ep, words, seen)]);
+    // ep.push(1000, true);
+    // ep.push(1500, false);
+    // console.log([ep.W, ep.b]);
+    // console.log(wcount(ep.W, ep.b));
+    // console.log(confidence(ep.W, ep.b));
 }
 
 main();
-
-onmessage = e => console.log(e.data);
