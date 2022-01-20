@@ -46,22 +46,29 @@ The shape of this graph can also be to our advantage. It shows that a word twice
 
 [plot – sigmoid curve]
 
-This plot shows what someone’s “vocab curve” might look like – that is, their recognition of each word as we go through the list. The upside-down-S shape represents someone who knows almost all the common words, some unusual ones, and few arcane ones. If we can find your personal S-curve, at least roughly, we know your chance of recognising every word in English.
+This plot shows what someone’s “vocab curve” might look like – that is, the proportion of words they recognise in different parts of the list. The upside-down-S shape represents someone who knows almost all the common words, some unusual ones, and few arcane ones. If we can find your personal S-curve, at least roughly, we know your chance of recognising every word in English.
 
 Armed with word frequency data from COCA and a bit of mathematical jiggery-pokery, that’s exactly what this test does. As we learn which words you understand, we can narrow down what this curve looks like for you, and so estimate your vocabulary size.
 
-The only question is how to probe your vocab. Some tests simply ask if you recognise a set of words, but this probably leads to overestimates. Obscure words can be mistaken for common ones (eg _dissemble_ for _disassemble_, or _lessor_ for _lesser_). Multiple choice makes things more objective at the cost of false positives – because if you guess at random, you’ll be right a quarter of the time. Fortunately this is easy to adjust for in the statistics.
+The only question is how to probe your knowledge. Some tests simply ask if you recognise a set of words, but this probably leads to overestimates. Obscure words can be mistaken for common ones (eg _dissemble_ for _disassemble_, or _lessor_ for _lesser_). Multiple choice is more objective at the cost of introducing false positives – because if you guess at random, you’ll be right a quarter of the time. Luckily this is easy to adjust for in the statistics.
+
+A snag is that some obscure words are guessable. You can probably assume that *jurist* has something to do with the law, for example, even if you don't know it means "an expert in law" specifically. Unless you are a microbiologist or a doctor you probably don't know many names for bacteria or diseases, but they tend to follow a recognisable template. A fair few of these words can simply be removed from the quiz, and the result is reasonable for the level of effort needed to put it together.[^guessable]
+
+[^guessable]: A better approach would be to have participants choose between a set of plausible-sounding definitions for the given word. But for several thousand words this would be labour-intensive to build. (Collecting synonyms was already more work than you'd think -- it turns out to be hard to automate.)
 
 ## On vocab size
 
-Possibly the best-known vocabulary test is [testyourvocab.com](http://testyourvocab.com) (TYV), which may give slightly lower scores than this one. This is largely down to the underlying data used, which in TYV's case is over a decade old. Because we use a larger and more modern lexicon, we can detect more of your hard-earned words.
+You can't count words without deciding what qualifies as one. Datasets like COCA usually make an effort to “stem” words, so that _jumps_, _jumping_, _jumped_ and so on are all treated as variations on the same root, _jump_. In this case it's clear that there's really just one verb, alongside generic rules for conjugation which only need to be learned once. But in general it's hard to decide whether a word is distinct or a variation, leading to some level of arbitrariness. We follow the decisions of Merriam-Webster, including only their dictionary headwords.[^words]
 
-Languages change. The Oxford English Dictionary added [1400 new entries](https://public.oed.com/updates/) just in the first quarter of 2021. A corpus drawn from the internet, rather than stuffy 20<sup>th</sup> century news and literature, has less Queen’s English and more memespeak. The [data we use](https://www.wordfrequency.info) includes neologisms (like _blog_), some homonyms (_mean_ as in *convey*, *average* and *unkind*) and hyphenations (like _co-founder_).[^stemming] So TYV’s [hardest words](http://testyourvocab.com/hard) are more obscure than those from the newer list, even though the latter has more entries overall.
+[^words]: COCA contains some interesting redundant words, like *greediness* (more usually just *greed*), *cohabitate* (*cohabit*) and *complicitous* (*complicit*). It includes compounds like *youthful-looking* that are unusual but don't need to be learned separately from their parts, and treats some spelling variants like *bazar* and *bazaar* separately. These are removed for the test.
 
-[^stemming]:
-     Both datasets make an effort to “stem” words, so that _jumps_, _jumping_, _jumped_ and so on are all treated as part of the same root word, _jump_.
+Possibly the best-known existing test is [testyourvocab.com](http://testyourvocab.com) (TYV), which may give slightly lower scores than this one. Although there are differences in method, probably far more significant is the underlying data used, which in TYV's case is over a decade old. Because we use a larger and more modern lexicon, we can detect more of your hard-earned words.
 
-[Many words](https://gist.github.com/MikeInnes/4aaae4d2c898c2dadf76dbfde444353d) don't appear in the older corpus even once. Future historians will no doubt learn a lot about our changing society from terms like _blog_, _ipad_, _self-driving_, _idiot-proof_ and _co-wife_.
+Languages change. The Oxford English Dictionary added [1400 new entries](https://public.oed.com/updates/) just in the first quarter of 2021. A corpus drawn from the internet, rather than stuffy 20<sup>th</sup> century news and literature, has less Queen’s English and more memespeak. The [data we use](https://www.wordfrequency.info) includes neologisms (like _blog_), some homonyms (_mean_ as in *intend*, *average* and *unkind*)[^homo] and hyphenations (like _co-founder_). So TYV’s [hardest words](http://testyourvocab.com/hard) are more obscure than those from the newer list, even though the latter has more entries overall.
+
+[^homo]: A limitation of the COCA dataset is that it only includes homonyms in different parts of speech (verb, noun and adjective in the case of *mean*). There is only one *bank* listed, even though riversides and financial institutions get separate entries in the dictionary. This will lead to some underestimation in the test.
+
+[Many words](https://gist.github.com/MikeInnes/4aaae4d2c898c2dadf76dbfde444353d) don't appear in the older corpus even once. Future linguists will no doubt learn a lot about our changing society from terms like _blog_, _ipad_, _self-driving_, _idiot-proof_ and _co-wife_.
 
 ## Maths
 
@@ -76,7 +83,7 @@ Say [[x_i]] is the popularity of the [[i^\text{th}]] word, and [[y_i]] is `true`
 
 This is a probit regression (much like the more common logistic regression, but with slightly better fit to this data). Basically, [[W]] and [[b]] are learnable parameters that define an S-shaped curve, and we can fit that curve to your quiz answers.
 
-We could equally write that model out as follows, with an explicit Bernoulli distribution [[\mathcal{B}(p)]] and the normal distribution CDF [[\Phi(x)]].
+We could equally write the model with an explicit Bernoulli distribution [[\mathcal{B}(p)]] and the normal distribution CDF [[\Phi(x)]].
 
 $[[y_i \sim \mathcal{B}(\Phi(b - W x_i))]]
 
@@ -94,7 +101,7 @@ This isn't quite the whole story, though, because we don't actually see [[y_i]] 
     ]]
 </div>
 
-We can easily tweak the model to deal with this, observing [[\hat y_i]] but then recovering [[P(y_i)]] to calculate your score. The quiz uses Expectation Propagation to fit to model instantly in your browser. Running the model live in turn lets us make use of its results: we can ask questions for which the chance of a right answer is about 50%. Words at the edge of your knowledge – not too easy, not too hard – are the most helpful for fitting the curve, as well as being more fun to answer.
+We can easily tweak the model to deal with this, observing [[\hat y_i]] but then recovering [[P(y_i)]] to calculate your score. The quiz uses Expectation Propagation to fit the model instantly in your browser. Running the model live in turn lets us make use of its results on the fly: we can ask questions for which the chance of a right answer is about 50%. Words at the edge of your knowledge – not too easy, not too hard – are the most helpful for fitting the curve, as well as being more fun to answer.
 
 After fitting we can pull out a function [[p(x) = \Phi(b - W x)]] representing how likely it is that you know any word at rank [[x]]. Then it's easy to sum up over all word ranks to estimate how many you know overall.[^totals]
 
@@ -104,7 +111,7 @@ $[[\sum_{x=1}^\infty \Phi(b - W x)]]
 
 Note that we've assumed there are more words than just those in our limited dataset, which only goes up to rank 35,000 or so. Summing to infinity equates to including the top million words in English (or some other big number).
 
-It's bold to model your knowledge beyond the words that we can test. It’d be useful to bolster our assumptions by testing the S-curve’s fit more thoroughly, especially using data from smaller vocabularies (like those of youngsters or non-native speakers). That said, it won’t have a big effect on most people’s results, and the alternative of capping high scores is no less arbitrary.
+It's a little bold to model your knowledge beyond the words that we can test. It’d be useful to bolster our assumptions by testing the fit more thoroughly, especially using data from smaller vocabularies (like those of youngsters or non-native speakers). That said, it won’t have a big effect on most people’s results, and the alternative of capping high scores is no less arbitrary.
 
 It's even plausible that infinity is the right choice. András Kornai has argued that the size of language [is actually unbounded](https://kornai.com/Papers/hmwat.pdf). Zipf’s long tail just keeps going on, leaving no phrase out, however few people use it. It looks after the words that live only among odd dialects in villages, or as an inside joke between friends, or spoken playfully between pillows. We may as well count those words, too.
 
@@ -136,6 +143,7 @@ It's even plausible that infinity is the right choice. András Kornai has argued
     .test-buttons button {
         font-family: inherit;
         font-weight: 600;
+        color: black;
         background-color: white;
         border: 3px solid var(--button-border-colour);
         border-radius: 10px;
