@@ -52,7 +52,7 @@ Armed with word frequency data from COCA and a bit of mathematical jiggery-poker
 
 The only question is how to probe your knowledge. Some tests simply ask if you recognise a set of words, but this probably leads to overestimates. Obscure words can be mistaken for common ones (eg _dissemble_ for _disassemble_, or _lessor_ for _lesser_). Multiple choice is more objective at the cost of introducing false positives – because if you guess at random, you’ll be right a quarter of the time. Luckily this is easy to adjust for in the statistics.
 
-A snag is that some obscure words are guessable. You can probably assume that *jurist* has something to do with the law, for example, even if you don't know it means "an expert in law" specifically. Unless you are a microbiologist or a doctor you probably don't know many names for bacteria or diseases, but they tend to follow a recognisable template. A fair few of these words can simply be removed from the quiz, and the result is reasonable for the level of effort needed to put it together.[^guessable]
+A snag is that some obscure words are guessable. You can probably assume that *jurist* has something to do with the courts, for example, even if you don't know it means "an expert in law" specifically. Unless you are a microbiologist or doctor you probably don't know many names for bacteria or diseases, but they tend to follow a recognisable template. A fair few of these words can simply be removed from the quiz, and the result is reasonable for the level of effort needed to put it together.[^guessable]
 
 [^guessable]: A better approach would be to have participants choose between a set of plausible-sounding definitions for the given word. But for several thousand words this would be labour-intensive to build. (Collecting synonyms was already more work than you'd think -- it turns out to be hard to automate.)
 
@@ -62,9 +62,9 @@ You can't count words without deciding what qualifies as one. Datasets like COCA
 
 [^words]: COCA contains some interesting redundant words, like *greediness* (more usually just *greed*), *cohabitate* (*cohabit*) and *complicitous* (*complicit*). It includes compounds like *youthful-looking* that are unusual but don't need to be learned separately from their parts, and treats some spelling variants like *bazar* and *bazaar* separately. These are removed for the test.
 
-Possibly the best-known existing test is [testyourvocab.com](http://testyourvocab.com) (TYV), which may give slightly lower scores than this one. Although there are differences in method, probably far more significant is the underlying data used, which in TYV's case is over a decade old. Because we use a larger and more modern lexicon, we can detect more of your hard-earned words.
+Possibly the best-known existing test is [testyourvocab.com](http://testyourvocab.com) (TYV), which may give slightly lower scores than this one. Although there are differences in method, probably far more significant is the underlying data used. TYV's, drawn from the British National Corpus, is over a decade old. Because we use a larger and more modern lexicon, we can detect more of your hard-earned words.
 
-Languages change. The Oxford English Dictionary added [1400 new entries](https://public.oed.com/updates/) just in the first quarter of 2021. A corpus drawn from the internet, rather than stuffy 20<sup>th</sup> century news and literature, has less Queen’s English and more memespeak. The [data we use](https://www.wordfrequency.info) includes neologisms (like _blog_), some homonyms (_mean_ as in *intend*, *average* and *unkind*)[^homo] and hyphenations (like _co-founder_). So TYV’s [hardest words](http://testyourvocab.com/hard) are more obscure than those from the newer list, even though the latter has more entries overall.
+Languages change. The Oxford English Dictionary added [1400 new entries](https://public.oed.com/updates/) just in the first quarter of 2021. A corpus drawn from the internet, rather than stuffy 20<sup>th</sup> century news and literature, has less Queen’s English and more memespeak. [Our data source](https://www.wordfrequency.info) includes neologisms (like _blog_), some homonyms (_mean_ as in *intend*, *average* and *unkind*),[^homo] hyphenations (like _co-founder_) and some fandom terms like *turbolift* (from "Star Wars"). So TYV’s [hardest words](http://testyourvocab.com/hard) are more obscure than those from the newer list, even though the latter has more entries overall.
 
 [^homo]: A limitation of the COCA dataset is that it only includes homonyms in different parts of speech (verb, noun and adjective in the case of *mean*). There is only one *bank* listed, even though riversides and financial institutions get separate entries in the dictionary. This will lead to some underestimation in the test.
 
@@ -101,13 +101,19 @@ This isn't quite the whole story, though, because we don't actually see [[y_i]] 
     ]]
 </div>
 
-We can easily tweak the model to deal with this, observing [[\hat y_i]] but then recovering [[P(y_i)]] to calculate your score. The quiz uses Expectation Propagation to fit the model instantly in your browser. Running the model live in turn lets us make use of its results on the fly: we can ask questions for which the chance of a right answer is about 50%. Words at the edge of your knowledge – not too easy, not too hard – are the most helpful for fitting the curve, as well as being more fun to answer.
+We can easily tweak the model to deal with this, observing [[\hat y_i]] but then recovering [[P(y_i)]] to calculate your score. The quiz uses Expectation Propagation to fit the model instantly in your browser. Running the model live lets us make use of its results on the fly: we can ask questions for which the chance of a right answer is about 50%. Words at the edge of your knowledge – not too easy, not too hard – are the most helpful for fitting the curve, as well as being more fun to answer.
 
 After fitting we can pull out a function [[p(x) = \Phi(b - W x)]] representing how likely it is that you know any word at rank [[x]]. Then it's easy to sum up over all word ranks to estimate how many you know overall.[^totals]
 
 [^totals]: The quiz also displays 95% confidence intervals, which are only slightly trickier to calculate.
 
-$[[\sum_{x=1}^\infty \Phi(b - W x)]]
+<div>
+    $[[\begin{aligned}
+            &\sum_{x=1}^\infty \Phi(b - W x) \\
+            \approx & \int_0^\infty \Phi(b - W x) dx \\
+            = & \frac{(b-Wx) \Phi(b-Wx) + \phi(b-Wx)}{W}
+    \end{aligned}]]
+</div>
 
 Note that we've assumed there are more words than just those in our limited dataset, which only goes up to rank 35,000 or so. Summing to infinity equates to including the top million words in English (or some other big number).
 
