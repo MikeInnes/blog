@@ -220,6 +220,15 @@ function quantile(W, b, p = 0.05) {
     return r;
 }
 
+function rank(W, b, p) {
+    let sign = p > 0.5 ? -1 : 1;
+    return ((b.mean*W.mean)+(sign*(sqrt(2)*sqrt((pow(erfcinv(2*p), 2)*((pow(W.mean, 2)*(1+b.variance))+((pow(b.mean, 2)*W.variance)+(-2*((1+b.variance)*(W.variance*pow(erfcinv(2*p), 2)))))))))))/(pow(W.mean, 2)+(-2*(W.variance*pow(erfcinv(2*p), 2))));
+}
+
+function lerp(x, a, b) {
+    return x*(b-a)+a;
+}
+
 // Main script
 // -----------
 
@@ -241,7 +250,7 @@ function pickword(ep, words, seen) {
     if (ep.W.mean < 0) {
         return cs[cs.length - 1]
     } else {
-        let r = ep.b.mean / ep.W.mean;
+        let r = rank(ep.W, ep.b, lerp(Math.random(), 0.2, 0.8));
         return findmin(cs, i => abs(words[i][0] - r));
     }
 }
@@ -284,13 +293,6 @@ async function main() {
     let ep = new EP(W, b);
 
     question(ep, words, seen);
-
-    // console.log(words[pickword(ep, words, seen)]);
-    // ep.push(1000, true);
-    // ep.push(1500, false);
-    // console.log([ep.W, ep.b]);
-    // console.log(wcount(ep.W, ep.b));
-    // console.log(confidence(ep.W, ep.b));
 }
 
 main();
