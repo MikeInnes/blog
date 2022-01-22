@@ -122,6 +122,7 @@ function condition_positive(W) {
 function ep_positive(W, f) {
     let W_ = gaussdiv(W, f);
     W = condition_positive(W_);
+    if (!candiv(W, W_)) return [W_, new Normal(0, Inf)];
     f = gaussdiv(W, W_);
     return [W, f];
 }
@@ -196,7 +197,7 @@ class EP {
         while (!this.iterate());
     }
     push(x, y) {
-        let [W, b, Wi, bi] = ep_update(this.W, this.b, new Normal(0., Inf), new Normal(0., Inf), x, y);
+        let [W, b, Wi, bi] = ep_update(this.W, this.b, new Normal(0, Inf), new Normal(0., Inf), x, y);
         [this.W, this.b] = [W, b];
         this.xs.push(x);
         this.ys.push(y);
