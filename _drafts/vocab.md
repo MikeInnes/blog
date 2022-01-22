@@ -42,7 +42,7 @@ Ideally we’d show you a small set of words, chosen at random, and see what fra
 
 [plot – zipf’s law]
 
-The shape of this graph can also be to our advantage. It shows that a word twice as far down the list gets used roughly half as often, an effect known as [Zipf’s law](https://en.wikipedia.org/wiki/Zipf%27s_law). So a word’s rank gives an idea of its usage, which in turn affects how likely you are to recognise it. That makes it possible to talk about your confidence in different parts of the list, separating the common and uncommon words, rather than dealing with all of them at once.
+The shape of this graph can also be to our advantage. It shows that a word twice as far down the list gets used roughly half as often, an effect known as [Zipf’s law](https://en.wikipedia.org/wiki/Zipf%27s_law). So a word’s rank gives an idea of its popularity, which in turn affects how likely you are to recognise it. That makes it possible to talk about your confidence in different parts of the list, separating the common and uncommon words, rather than dealing with all of them at once.
 
 [plot – sigmoid curve]
 
@@ -101,7 +101,7 @@ This isn't quite the whole story, though, because we don't actually see [[y_i]] 
     ]]
 </div>
 
-We can easily tweak the model to deal with this, observing [[\hat y_i]] but then recovering [[P(y_i)]] to calculate your score. The quiz uses Expectation Propagation to fit the model instantly in your browser. Running the model live lets us make use of its results on the fly: we can ask questions for which the chance of a right answer is about 50%. Words at the edge of your knowledge – not too easy, not too hard – are the most helpful for fitting the curve, as well as being more fun to answer.
+We can easily tweak the model to deal with this, observing [[\hat y_i]] but then recovering [[P(y_i)]] to calculate your score. The quiz uses Expectation Propagation to fit the model in your browser (this happens in the time between clicking an answer and a new question appearing). Running the model live lets us make use of its results on the fly: we can ask questions for which the chance of a right answer is about 50%. Words at the edge of your knowledge – not too easy, not too hard – are the most helpful for fitting the curve, as well as being more fun to answer.
 
 After fitting we can pull out a function [[p(x) = \Phi(b - W x)]] representing how likely it is that you know any word at rank [[x]]. Then it's easy to sum up over all word ranks to estimate how many you know overall.[^totals]
 
