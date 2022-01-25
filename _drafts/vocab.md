@@ -60,7 +60,7 @@ A snag is that some obscure words are guessable. You can probably assume that *j
 
 You can't count words without deciding what qualifies as one. Datasets like COCA usually make an effort to “stem” words, so that _jumps_, _jumping_, _jumped_ and so on are all treated as variations on the same root, _jump_. In this case it's clear that there's really just one verb, alongside generic rules for conjugation which only need to be learned once. But in general it's hard to decide whether a word is distinct or a variation, leading to some level of arbitrariness. We follow the decisions of Merriam-Webster, including only their dictionary headwords.[^words]
 
-[^words]: COCA contains some interesting redundant words, like *greediness* (more usually just *greed*), *cohabitate* (*cohabit*) and *complicitous* (*complicit*). It includes compounds like *youthful-looking* that are unusual but don't need to be learned separately from their parts, and treats some spelling variants like *bazar* and *bazaar* separately. These are removed for the test.
+[^words]: COCA contains some interesting redundant words, like *greediness* (more usually just *greed*), *cohabitate* (*cohabit*) and *complicitous* (*complicit*). It includes compounds like *youthful-looking* that are unusual but don't need to be learned separately from their parts, and treats some spelling variants like *bazar* and *bazaar* separately. After filtering for dictionary headwords, about a third of the words in the original dataset are removed.
 
 Possibly the best-known existing test is [testyourvocab.com](http://testyourvocab.com) (TYV), which may give slightly lower scores than this one. Although there are differences in method, probably far more significant is the underlying data used. TYV's, drawn from the British National Corpus, is over a decade old. Because we use a larger and more modern lexicon, we can detect more of your hard-earned words.
 
@@ -115,9 +115,9 @@ After fitting we can pull out a function [[p(x) = \Phi(b - W x)]] representing h
     \end{aligned}]]
 </div>
 
-Note that we've assumed there are more words than just those in our limited dataset, which only goes up to rank 35,000 or so. Summing to infinity equates to including the top million words in English (or some other big number).
+Note that we've assumed there are more words than just those in our limited dataset, which only goes up to rank 40,000. Summing to infinity equates to including the top million words in English (or some other big number).
 
-It's a little bold to model your knowledge beyond the words that we can test. It’d be useful to bolster our assumptions by testing the fit more thoroughly, especially using data from smaller vocabularies (like those of youngsters or non-native speakers). That said, it won’t have a big effect on most people’s results, and the alternative of capping high scores is no less arbitrary.
+It's a little bold to model your knowledge beyond the words that we can test. It’d be useful to bolster our assumptions by checking the fit more thoroughly, especially using data from smaller vocabularies (like those of youngsters or non-native speakers). That said, it won’t have a big effect on most people’s results, and the alternative of capping high scores is no less arbitrary.
 
 It's even plausible that infinity is the right choice. András Kornai has argued that the size of language [is actually unbounded](https://kornai.com/Papers/hmwat.pdf). Zipf’s long tail just keeps going on, leaving no phrase out, however few people use it. It looks after the words that live only among odd dialects in villages, or as an inside joke between friends, or spoken playfully between pillows. We may as well count those words, too.
 
