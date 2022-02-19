@@ -38,9 +38,11 @@ You can also administer the test for someone else. For more reliable results, tr
 
 We can’t test you on every English word – there are hundreds of thousands of them. Instead we can turn this into a statistical problem, by asking how likely you are to know a given word. If there’s a 5% chance you’ll recognise any word in English, that means you know a twentieth of the dictionary, and we can figure out your vocabulary size from there.
 
-Ideally we’d show you a small set of words, chosen at random, and see what fraction you understand. But this is tricky because of the number of obscure words. The plot below shows the top 1,000 words, ordered by how often they appear in writing and speech. You can see that a few words (like _the_ and _and_) are really, really popular, but the bulk are less well-known. Zooming out, there are a few thousand common words, tens of thousands of unusual ones, and millions more that are esoteric, archaic or obsolete. So to avoid making the quiz tedious, we have to be a bit cleverer.
+Ideally we’d show you a small set of words, chosen at random, and see what fraction you understand. But this is tricky because of the number of obscure words. The plot below shows the top 1,000 words, ordered by how often they appear in writing and speech. You can see that a few words (like _the_ and _and_) are really, really popular, but the bulk are less well-known. Zooming out, there are a few thousand common words, tens of thousands of unusual ones, and millions more that are esoteric, archaic or obsolete.
 
 [plot – zipf’s law]
+
+If we gave you a random sample of words you'd know almost none of them. So to avoid making the quiz tedious, we have to be a bit cleverer.
 
 The shape of this graph can also be to our advantage. It shows that a word twice as far down the list gets used roughly half as often, an effect known as [Zipf’s law](https://en.wikipedia.org/wiki/Zipf%27s_law). So a word’s rank gives an idea of its popularity, which in turn affects how likely you are to recognise it. That makes it possible to talk about your confidence in different parts of the list, separating the common and uncommon words, rather than dealing with all of them at once.
 
