@@ -22,7 +22,7 @@ title: home
 
 ## Some things you can click on
 
-[GitHub](https://github.com/MikeInnes), [Twitter](https://twitter.com/MikeJInnes), [Publications](https://scholar.google.co.uk/citations?user=zffDj88AAAAJ&hl=en), [Blog]({{site.url}}), [Email](mailto:mike.j.innes@gmail.com)
+[GitHub](https://github.com/MikeInnes), [Twitter](https://twitter.com/MikeJInnes), [Publications](https://scholar.google.co.uk/citations?user=zffDj88AAAAJ&hl=en), [Blog]({{site.url}}), [Email](mailto:complaints@mikeinnes.io)
 
 [Addresses, keys etc.](keys.html)
 
