@@ -53,7 +53,7 @@ The upshot is that a quiz based on randomly sampled words would be tedious, beca
 The shape of this graph can also be to our advantage. It shows that a word twice as far down the list gets used roughly half as often, an effect known as [Zipf’s law](https://en.wikipedia.org/wiki/Zipf%27s_law). So a word’s rank gives an idea of its popularity, which in turn affects how likely you are to recognise it. That makes it possible to talk about your confidence in different parts of the list, separating the common and uncommon words, rather than dealing with all of them at once.
 
 <img src="/assets/vocab/sigmoid.png" style="width:100%" />
-<div class="caption">A example "vocab curve" showing the proportion of words known at different levels of popularity. The grey background area shows relative frequencies of the same words.</div>
+<div class="caption">A example "vocab curve" showing the proportion of words known at different levels of popularity. The grey background area shows relative frequencies at each rank.</div>
 
 This plot shows what someone’s “vocab curve” might look like – that is, the proportion of words they recognise in different parts of the list. The upside-down-S shape represents someone who knows almost all the common words, some unusual ones, and few arcane ones. Everyone's curve will be different, but if we can find yours roughly, we know your chance of recognising every word in English. Then we can count up the total.
 
