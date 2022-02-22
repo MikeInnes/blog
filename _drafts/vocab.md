@@ -38,25 +38,30 @@ You can also administer the test for someone else. For more reliable results, tr
 
 We can’t test you on every English word – there are hundreds of thousands of them. Instead we can turn this into a statistical problem, by asking how likely you are to know a given word. If there’s a 5% chance you’ll recognise any word in English, that means you know a twentieth of the dictionary, and we can figure out your vocabulary size from there.
 
-Ideally we’d show you a small set of words, chosen at random, and see what fraction you understand. But this is tricky because of the number of obscure words. The plot below shows the top 1,000 words, ordered by how often they appear in writing and speech. You can see that a few words (like _the_ and _and_) are really, really popular, but the bulk are less well-known. Zooming out, there are a few thousand common words, tens of thousands of unusual ones, and millions more that are esoteric, archaic or obsolete.
+Ideally we’d show you a small sample of words, chosen at random, and see what fraction you understand. But the way words are distributed in English makes this tricky. The plot below shows the top 50, ordered by how often they appear in writing. You can see that a few of them (like _the_ and _and_) are really popular, while the rest are less well used.
 
 <img src="/assets/vocab/zipf1.png" style="width:100%" />
+<div class="caption">The 50 most popular words, and their frequencies.</div>
+
+That pattern persists as we look down the list. However many words we include, there are a always a small number of celebrities and a lot of proletarians. Zooming out, English has a few thousand widely-used words, tens of thousands of unusual ones, and millions more that are esoteric, archaic or obsolete.
 
 <img src="/assets/vocab/zipf2.png" style="width:100%" />
+<div class="caption">The 50<sup>th</sup> to 500<sup>th</sup> most popular words, and their frequencies.</div>
 
-If we gave you a random sample of words you'd know almost none of them. So to avoid making the quiz tedious, we have to be a bit cleverer.
+The upshot is that a quiz based on randomly sampled words would be tedious, because almost all would be obscure beyond recognition. To avoid that we have to be a bit cleverer.
 
 The shape of this graph can also be to our advantage. It shows that a word twice as far down the list gets used roughly half as often, an effect known as [Zipf’s law](https://en.wikipedia.org/wiki/Zipf%27s_law). So a word’s rank gives an idea of its popularity, which in turn affects how likely you are to recognise it. That makes it possible to talk about your confidence in different parts of the list, separating the common and uncommon words, rather than dealing with all of them at once.
 
 <img src="/assets/vocab/sigmoid.png" style="width:100%" />
+<div class="caption">A example "vocab curve" showing the proportion of words known at different levels of popularity. The grey background area shows relative frequencies of the same words.</div>
 
-This plot shows what someone’s “vocab curve” might look like – that is, the proportion of words they recognise in different parts of the list. The upside-down-S shape represents someone who knows almost all the common words, some unusual ones, and few arcane ones. If we can find your personal S-curve, at least roughly, we know your chance of recognising every word in English.
+This plot shows what someone’s “vocab curve” might look like – that is, the proportion of words they recognise in different parts of the list. The upside-down-S shape represents someone who knows almost all the common words, some unusual ones, and few arcane ones. Everyone's curve will be different, but if we can find yours roughly, we know your chance of recognising every word in English. Then we can count up the total.
 
-Armed with word frequency data from COCA and a bit of mathematical jiggery-pokery, that’s exactly what this test does. As we learn which words you understand, we can narrow down what this curve looks like for you, and so estimate your vocabulary size.
+Armed with word frequency data from [COCA](https://www.english-corpora.org/coca/) and a bit of mathematical jiggery-pokery, that’s exactly what this test does. As we learn which words you understand, we can narrow down what this curve looks like for you, and so estimate your vocabulary size.
 
 The only question is how to probe your knowledge. Some tests simply ask if you recognise a set of words, but this probably leads to overestimates. Obscure words can be mistaken for common ones (eg _dissemble_ for _disassemble_, or _lessor_ for _lesser_). Multiple choice is more objective at the cost of introducing false positives – because if you guess at random, you’ll be right a quarter of the time. Luckily this is easy to adjust for in the statistics.
 
-A snag is that some obscure words are guessable. You can probably assume that *jurist* has something to do with the courts, for example, even if you don't know it means "an expert in law" specifically. Unless you are a microbiologist or doctor you probably don't know many names for bacteria or diseases, but they tend to follow a recognisable template. A fair few of these words can simply be removed from the quiz, and the result is reasonable for the level of effort needed to put it together.[^guessable]
+One snag of that approach is that some obscure words are guessable. You can probably assume that *jurist* has something to do with the courts, for example, even if you don't know it means "an expert in law" specifically. Unless you are a microbiologist or doctor you probably don't know many names for bacteria or diseases, but they tend to follow a recognisable template. A fair few of these words can simply be removed from the quiz, and the result is reasonable for the level of effort needed to put it together.[^guessable]
 
 [^guessable]: A better approach would be to have participants choose between a set of plausible-sounding definitions for the given word. But for several thousand words this would be labour-intensive to build. (Collecting synonyms was already more work than you'd think -- it turns out to be hard to automate.)
 
