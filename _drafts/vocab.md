@@ -40,13 +40,15 @@ We can’t test you on every English word – there are hundreds of thousands o
 
 Ideally we’d show you a small set of words, chosen at random, and see what fraction you understand. But this is tricky because of the number of obscure words. The plot below shows the top 1,000 words, ordered by how often they appear in writing and speech. You can see that a few words (like _the_ and _and_) are really, really popular, but the bulk are less well-known. Zooming out, there are a few thousand common words, tens of thousands of unusual ones, and millions more that are esoteric, archaic or obsolete.
 
-[plot – zipf’s law]
+<img src="/assets/vocab/zipf1.png" style="width:100%" />
+
+<img src="/assets/vocab/zipf2.png" style="width:100%" />
 
 If we gave you a random sample of words you'd know almost none of them. So to avoid making the quiz tedious, we have to be a bit cleverer.
 
 The shape of this graph can also be to our advantage. It shows that a word twice as far down the list gets used roughly half as often, an effect known as [Zipf’s law](https://en.wikipedia.org/wiki/Zipf%27s_law). So a word’s rank gives an idea of its popularity, which in turn affects how likely you are to recognise it. That makes it possible to talk about your confidence in different parts of the list, separating the common and uncommon words, rather than dealing with all of them at once.
 
-[plot – sigmoid curve]
+<img src="/assets/vocab/sigmoid.png" style="width:100%" />
 
 This plot shows what someone’s “vocab curve” might look like – that is, the proportion of words they recognise in different parts of the list. The upside-down-S shape represents someone who knows almost all the common words, some unusual ones, and few arcane ones. If we can find your personal S-curve, at least roughly, we know your chance of recognising every word in English.
 
@@ -121,7 +123,7 @@ Note that we've assumed there are more words than just those in our limited data
 
 It's a little bold to model your knowledge beyond the words that we can test. It’d be useful to bolster our assumptions by checking the fit more thoroughly, especially using data from smaller vocabularies (like those of youngsters or non-native speakers). That said, it won’t have a big effect on most people’s results, and the alternative of capping high scores is no less arbitrary.
 
-It's even plausible that infinity is the right choice. András Kornai has argued that the size of language [is actually unbounded](https://kornai.com/Papers/hmwat.pdf). Zipf’s long tail just keeps going on, leaving no phrase out, however few people use it. It looks after the words that live only among odd dialects in villages, or as an inside joke between friends, or spoken playfully between pillows. We may as well count those words, too.
+Infinity could even be the right choice in principle. András Kornai has argued that the size of language [is actually unbounded](https://kornai.com/Papers/hmwat.pdf). Zipf’s long tail just keeps going on, leaving no expression out, however few people use it. It looks after the ones that live only among odd dialects in villages, or as an inside joke between friends, or spoken playfully between pillows. We may as well count those words, too.
 
 ## Notes
 
