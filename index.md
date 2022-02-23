@@ -27,11 +27,26 @@ title: Home
 
 ## Some things you can read
 
+Essays:
 <ul>
 {% for post in site.posts %}
+{% if post.tags contains 'essay' %}
 <li>
   <a href="{{post.url}}">{{post.title}}</a> ({{post.date | date: '%B %Y' }})
 </li>
+{% endif %}
+{% endfor %}
+</ul>
+
+Infodumps:
+<ul>
+{% for post in site.posts %}
+{% assign ntags = post.tags | size %}
+{% if post.tags contains 'infodump' or ntags == 0 %}
+<li>
+  <a href="{{post.url}}">{{post.title}}</a> ({{post.date | date: '%B %Y' }})
+</li>
+{% endif %}
 {% endfor %}
 </ul>
 

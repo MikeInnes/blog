@@ -1,5 +1,6 @@
 ---
 title: Test Your Vocab
+tags: essay infodump
 ---
 
 foo bar baz
