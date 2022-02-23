@@ -48,7 +48,7 @@ That pattern persists as we look down the list. However many words we include, t
 <img src="/assets/vocab/zipf2.png" style="width:100%" />
 <div class="caption">The 50<sup>th</sup> to 500<sup>th</sup> most popular words, and their frequencies.</div>
 
-The upshot is that a quiz based on randomly sampled words would be tedious, because almost all would be obscure beyond recognition. To avoid that we have to be a bit cleverer.
+The upshot is that a quiz based on randomly sampled words would be tedious, because almost all of them would be obscure beyond recognition. To avoid that we have to be a bit cleverer.
 
 The shape of this graph can also be to our advantage. It shows that a word twice as far down the list gets used roughly half as often, an effect known as [Zipf’s law](https://en.wikipedia.org/wiki/Zipf%27s_law). So a word’s rank gives an idea of its popularity, which in turn affects how likely you are to recognise it. That makes it possible to talk about your confidence in different parts of the list, separating the common and uncommon words, rather than dealing with all of them at once.
 
