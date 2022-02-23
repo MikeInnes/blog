@@ -6,3 +6,14 @@ title: Mike Innes's Blog
 author: Mike Innes
 feed:
   excerpt_only: true
+defaults:
+  -
+    scope:
+      type: "posts"
+    values:
+      layout: "post"
+  -
+    scope:
+      type: "pages"
+    values:
+      layout: "page"
