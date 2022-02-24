@@ -199,11 +199,16 @@ function format(n) {
     return Math.round(n).toLocaleString(undefined, {maximumSignificantDigits: 2});
 }
 
+function pos_name(n) {
+    return n == 'j' ? 'adj' : n;
+}
+
 function question(data) {
     id = data.id;
     answerid = Math.floor(Math.random() * 4);
     document.querySelector('.vocab-test .test-word').innerText = data.word;
-    document.querySelector('.word').innerText = data.word;
+    document.querySelector('.word').innerText =
+        data.word + ' (' + pos_name(data.pos) + '.)';
     document.querySelectorAll('.vocab-test button').forEach(function (b,i) {
         if (i === answerid) {
             b.innerText = data.answer;

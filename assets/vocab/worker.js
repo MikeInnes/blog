@@ -268,6 +268,7 @@ function question(ep, words, seen) {
     postMessage({
         id: i,
         word: words[i][2],
+        pos: words[i][1],
         answer: words[i][3],
         answers: answers(words, i),
         bounds: [wcount(ep.W, ep.b), quantile(ep.W, ep.b, 0.05), quantile(ep.W, ep.b, 0.95)]
