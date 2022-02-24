@@ -285,7 +285,7 @@ function waitForAnswer(ep, words, seen) {
 }
 
 async function main() {
-    let resp = await fetch('/assets/vocab.json');
+    let resp = await fetch('/assets/vocab/vocab.json');
     let words = await resp.json();
     let seen = new Set();
 

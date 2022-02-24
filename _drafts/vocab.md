@@ -193,7 +193,7 @@ Infinity could even be the right choice in principle. András Kornai has argued 
 <script>
 let id = null;
 let answerid = null;
-let worker = new Worker('/assets/vocab-worker.js');
+let worker = new Worker('/assets/vocab/worker.js');
 
 function format(n) {
     return Math.round(n).toLocaleString(undefined, {maximumSignificantDigits: 2});
