@@ -263,6 +263,10 @@ function answers(words, i) {
     return candidates.slice(0, 3).map(w => w[3]);
 }
 
+function bounds(ep) {
+    return [wcount(ep.W, ep.b), quantile(ep.W, ep.b, 0.05), quantile(ep.W, ep.b, 0.95)];
+}
+
 function question(ep, words, seen) {
     let i = pickword(ep, words, seen);
     postMessage({
@@ -271,7 +275,7 @@ function question(ep, words, seen) {
         pos: words[i][1],
         answer: words[i][3],
         answers: answers(words, i),
-        bounds: [wcount(ep.W, ep.b), quantile(ep.W, ep.b, 0.05), quantile(ep.W, ep.b, 0.95)]
+        bounds: bounds(ep)
     });
     waitForAnswer(ep, words, seen);
 }
@@ -288,13 +292,15 @@ function waitForAnswer(ep, words, seen) {
 async function main() {
     let resp = await fetch('/assets/vocab/vocab.json');
     let words = await resp.json();
+    console.log(words[1605][2]); // First word is pre-loaded
     let seen = new Set();
 
     let W = new Normal(1e-3, pow(1e-3, 2));
     let b = new Normal(2, pow(1, 2));
     let ep = new EP(W, b);
 
-    question(ep, words, seen);
+    // question(ep, words, seen); // first question pre-loaded
+    waitForAnswer(ep, words, seen);
 }
 
 main();

@@ -9,16 +9,16 @@ So you want to show off the size of your dictionary? Look no further than this q
 
 <!-- HTML buttons -->
 <div class="vocab-test">
-    <div class="test-word">word</div>
+    <div class="test-word">travel</div>
     <div class="test-help">which word has the closest meaning?</div>
     <div class="test-buttons">
         <div class="test-buttons-row">
-            <button>synonym</button>
-            <button>antonym</button>
+            <button>friendship</button>
+            <button>journey</button>
         </div>
         <div class="test-buttons-row">
-            <button>unrelated</button>
-            <button>nothing</button>
+            <button>answer</button>
+            <button>researcher</button>
         </div>
     </div>
 </div>
@@ -26,8 +26,8 @@ So you want to show off the size of your dictionary? Look no further than this q
 <p class="vocab-graph"></p>
 
 <p>
-Just click the word that’s closest in meaning to <span class="word">travel</span>. As you play we’ll narrow down the estimate of your vocabulary size, and you can stop whenever you get bored.
-Right now we think you know about <span class="vocab-mean">42,000</span> words (between <span class="vocab-lower">36,000</span> and <span class="vocab-upper">48,000</span>).
+Just click the word that’s closest in meaning to <span class="word">travel (n.)</span>. As you play we’ll narrow down the estimate of your vocabulary size, and you can stop whenever you get bored.
+Right now we think you know about <span class="vocab-mean">2,000</span> words (between <span class="vocab-lower">400</span> and <span class="vocab-upper">200,000</span>).
 </p>
 
 You can also administer the test for someone else. For more reliable results, try asking them to define the word or give an example. If they are not sure of a word then just click an answer at random.[^random]
@@ -191,8 +191,8 @@ Infinity could even be the right choice in principle. András Kornai has argued 
 </style>
 
 <script>
-let id = null;
-let answerid = null;
+let id = 1605; // first question pre-loaded
+let answerid = 1;
 let worker = new Worker('/assets/vocab/worker.js');
 
 function format(n) {
@@ -224,7 +224,7 @@ function question(data) {
 
 function answer(i) {
     correct = i === answerid;
-    console.log(correct ? "correct" : "incorrect");
+    // console.log(correct ? "correct" : "incorrect");
     worker.postMessage({id, result: correct});
     updateCorrect(correct);
 }
