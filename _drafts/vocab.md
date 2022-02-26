@@ -128,7 +128,7 @@ Note that we've assumed there are more words than just those in our limited data
 
 It's a little bold to model your knowledge beyond the words that we can test. It’d be useful to bolster our assumptions by checking the fit more thoroughly, especially using data from smaller vocabularies (like those of youngsters or non-native speakers). That said, it won’t have a big effect on most people’s results, and the alternative of capping high scores is no less arbitrary.
 
-Infinity could even be the right choice in principle. András Kornai has argued that the size of language [is actually unbounded](https://kornai.com/Papers/hmwat.pdf). Zipf’s long tail just keeps going on, leaving no expression out, however few people use it. It looks after the ones that live only among odd dialects in villages, or as an inside joke between friends, or spoken playfully between pillows. We may as well count those words, too.
+Infinity could even be the right choice in principle. András Kornai has argued that the size of language [is actually unbounded](https://kornai.com/Papers/hmwat.pdf). Zipf’s long tail just keeps going on, leaving no expression out, however few people use it. It includes those that live only among odd dialects in villages, or as an inside joke between friends, or spoken playfully between pillows. We may as well count those words, too.
 
 ## Notes
 
