@@ -24,7 +24,7 @@ body {
   }
 }
 .content > p:last-of-type::after {
-  content: " ●";
+  content: " ●";
 }
 .bordered {
   background-color: white;
