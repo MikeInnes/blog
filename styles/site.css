@@ -49,9 +49,11 @@ h1 {
 h2.description {
   font-size: 16px;
   font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 5px;
   /* font-style: italic; */
 }
-.content h2 {
+h2 {
   font-size: 105%;
   margin-top: 2em;
   margin-bottom: -15px;
