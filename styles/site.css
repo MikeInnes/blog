@@ -46,7 +46,12 @@ h1 {
   font-size: 35px;
   font-weight: 300;
 }
-h2 {
+h2.description {
+  font-size: 16px;
+  font-weight: 400;
+  /* font-style: italic; */
+}
+.content h2 {
   font-size: 105%;
   margin-top: 2em;
   margin-bottom: -15px;

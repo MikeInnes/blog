@@ -1,5 +1,6 @@
 ---
 title: Taming the Tarpit
+description: Building abstractions in brainfuck
 ---
 
 Have you ever seen a programming language like this?
