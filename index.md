@@ -27,7 +27,7 @@ title: Home
 
 ## Some things you can read
 
-Essays:
+General:
 <ul>
 {% for post in site.posts %}
 {% if post.tags contains 'essay' %}
@@ -38,7 +38,7 @@ Essays:
 {% endfor %}
 </ul>
 
-Infodumps:
+Technical:
 <ul>
 {% for post in site.posts %}
 {% assign ntags = post.tags | size %}
