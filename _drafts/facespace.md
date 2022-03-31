@@ -49,37 +49,37 @@ The images below were created by first generating a StyleGAN face as normal, the
 
 <div class="fill">
 <a href="/assets/facespace/panel02.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel02.jpg">
+<img src="/assets/facespace/panel02small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel01.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel01.jpg">
+<img src="/assets/facespace/panel01small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel03.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel03.jpg">
+<img src="/assets/facespace/panel03small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel05.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel05.jpg">
+<img src="/assets/facespace/panel05small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel23.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel23.jpg">
+<img src="/assets/facespace/panel23small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel24.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel24.jpg">
+<img src="/assets/facespace/panel24small.jpg">
 </a>
 </div>
 
@@ -92,31 +92,31 @@ The images below were created by first generating a StyleGAN face as normal, the
 
 <div class="fill">
 <a href="/assets/facespace/panel17.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel17.jpg">
+<img src="/assets/facespace/panel17small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel06.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel06.jpg">
+<img src="/assets/facespace/panel06small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel07.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel07.jpg">
+<img src="/assets/facespace/panel07small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel08.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel08.jpg">
+<img src="/assets/facespace/panel08small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel19.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel19.jpg">
+<img src="/assets/facespace/panel19small.jpg">
 </a>
 </div>
 
@@ -129,13 +129,13 @@ The images below were created by first generating a StyleGAN face as normal, the
 
 <div class="fill">
 <a href="/assets/facespace/panel10.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel10.jpg">
+<img src="/assets/facespace/panel10small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel11.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel11.jpg">
+<img src="/assets/facespace/panel11small.jpg">
 </a>
 </div>
 
@@ -148,13 +148,13 @@ The images below were created by first generating a StyleGAN face as normal, the
 
 <div class="fill">
 <a href="/assets/facespace/panel21.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel21.jpg">
+<img src="/assets/facespace/panel21small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel12.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel12.jpg">
+<img src="/assets/facespace/panel12small.jpg">
 </a>
 </div>
 
@@ -167,19 +167,19 @@ The images below were created by first generating a StyleGAN face as normal, the
 
 <div class="fill">
 <a href="/assets/facespace/panel14.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel14.jpg">
+<img src="/assets/facespace/panel14small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel15.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel15.jpg">
+<img src="/assets/facespace/panel15small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel09.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel09.jpg">
+<img src="/assets/facespace/panel09small.jpg">
 </a>
 </div>
 
@@ -192,19 +192,19 @@ The images below were created by first generating a StyleGAN face as normal, the
 
 <div class="fill">
 <a href="/assets/facespace/panel04.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel04.jpg">
+<img src="/assets/facespace/panel04small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel18.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel18.jpg">
+<img src="/assets/facespace/panel18small.jpg">
 </a>
 </div>
 
 <div class="fill">
 <a href="/assets/facespace/panel20.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel20.jpg">
+<img src="/assets/facespace/panel20small.jpg">
 </a>
 </div>
 
@@ -217,7 +217,7 @@ The images below were created by first generating a StyleGAN face as normal, the
 
 <div class="fill">
 <a href="/assets/facespace/panel22.jpg" target=_blank class="img">
-<img src="/assets/facespace/panel22.jpg">
+<img src="/assets/facespace/panel22small.jpg">
 </a>
 </div>
 
