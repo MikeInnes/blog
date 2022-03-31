@@ -30,7 +30,7 @@ title: Home
 General:
 <ul>
 {% for post in site.posts %}
-{% if post.tags contains 'essay' %}
+{% if post.tags contains 'general' %}
 <li>
   <a href="{{post.url}}">{{post.title}}</a> ({{post.date | date: '%B %Y' }})
 </li>
