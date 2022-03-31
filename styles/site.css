@@ -120,8 +120,12 @@ blockquote em {
   text-align: center;
 }
 
-.fill > img {
+.fill > img, .fill > a > img, .fill > video {
   width: 100%;
+}
+
+a.img {
+  border: none;
 }
 
 .img-narrow {
