@@ -20,9 +20,11 @@ Normally these are chosen arbitrarily, and the model will generate a unique face
 
 
 <div class="fill">
-<video controls loop=true>
+<video controls loop=true playsinline=true>
 <source src="/assets/facespace/tween00.webm"
         type="video/webm" />
+<source src="/assets/facespace/tween00.mp4"
+        type="video/mp4" />
 </video>
 </div>
 
@@ -30,16 +32,20 @@ Normally these are chosen arbitrarily, and the model will generate a unique face
 We can also ask whether the generated faces have some quality – for example, smiling or not smiling, or appearing male or female – and then tell StyleGAN to generate images that are likely to be classified one way or the other. We can even tweak one trait while fixing others, like age and pose.[^1]
 
 <div class="fill">
-<video controls loop=true>
+<video controls loop=true playsinline=true>
 <source src="/assets/facespace/tween01.webm"
         type="video/webm" />
+<source src="/assets/facespace/tween01.mp4"
+        type="video/mp4" />
 </video>
 </div>
 
 <div class="fill">
-<video controls loop=true>
+<video controls loop=true playsinline=true>
 <source src="/assets/facespace/tween02.webm"
         type="video/webm" />
+<source src="/assets/facespace/tween02.mp4"
+        type="video/mp4" />
 </video>
 </div>
 
@@ -84,9 +90,11 @@ The images below were created by first generating a StyleGAN face as normal, the
 </div>
 
 <div class="fill">
-<video controls loop=true>
+<video controls loop=true playsinline=true>
 <source src="/assets/facespace/tween03.webm"
         type="video/webm" />
+<source src="/assets/facespace/tween03.mp4"
+        type="video/mp4" />
 </video>
 </div>
 
@@ -121,9 +129,11 @@ The images below were created by first generating a StyleGAN face as normal, the
 </div>
 
 <div class="fill">
-<video controls loop=true>
+<video controls loop=true playsinline=true>
 <source src="/assets/facespace/tween06.webm"
         type="video/webm" />
+<source src="/assets/facespace/tween06.mp4"
+        type="video/mp4" />
 </video>
 </div>
 
@@ -140,9 +150,11 @@ The images below were created by first generating a StyleGAN face as normal, the
 </div>
 
 <div class="fill">
-<video controls loop=true>
+<video controls loop=true playsinline=true>
 <source src="/assets/facespace/tween05.webm"
         type="video/webm" />
+<source src="/assets/facespace/tween05.mp4"
+        type="video/mp4" />
 </video>
 </div>
 
@@ -159,9 +171,11 @@ The images below were created by first generating a StyleGAN face as normal, the
 </div>
 
 <div class="fill">
-<video controls loop=true>
+<video controls loop=true playsinline=true>
 <source src="/assets/facespace/tween08.webm"
         type="video/webm" />
+<source src="/assets/facespace/tween08.mp4"
+        type="video/mp4" />
 </video>
 </div>
 
@@ -184,9 +198,11 @@ The images below were created by first generating a StyleGAN face as normal, the
 </div>
 
 <div class="fill">
-<video controls loop=true>
+<video controls loop=true playsinline=true>
 <source src="/assets/facespace/tween07.webm"
         type="video/webm" />
+<source src="/assets/facespace/tween07.mp4"
+        type="video/mp4" />
 </video>
 </div>
 
@@ -209,9 +225,11 @@ The images below were created by first generating a StyleGAN face as normal, the
 </div>
 
 <div class="fill">
-<video controls loop=true>
+<video controls loop=true playsinline=true>
 <source src="/assets/facespace/tween04.webm"
         type="video/webm" />
+<source src="/assets/facespace/tween04.mp4"
+        type="video/mp4" />
 </video>
 </div>
 
