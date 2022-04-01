@@ -18,9 +18,8 @@ Under the hood, StyleGAN starts with a set of 512 numbers, known as the “laten
 
 Normally these are chosen arbitrarily, and the model will generate a unique face for every possible list. But we can also dig into what the numbers mean. Similar lists produce similar faces, making it possible to manipulate StyleGAN’s output in interesting ways. For example, we can create an animation by showing all the faces between two starting points.
 
-
 <div class="fill">
-<video controls loop=true playsinline=true>
+<video controls loop=true playsinline=true poster="/assets/facespace/tween00-preview.jpg">
 <source src="/assets/facespace/tween00.webm"
         type="video/webm" />
 <source src="/assets/facespace/tween00.mp4"
@@ -28,11 +27,10 @@ Normally these are chosen arbitrarily, and the model will generate a unique face
 </video>
 </div>
 
-
 We can also ask whether the generated faces have some quality – for example, smiling or not smiling, or appearing male or female – and then tell StyleGAN to generate images that are likely to be classified one way or the other. We can even tweak one trait while fixing others, like age and pose.[^1]
 
 <div class="fill">
-<video controls loop=true playsinline=true>
+<video controls loop=true playsinline=true poster="/assets/facespace/tween01-preview.jpg">
 <source src="/assets/facespace/tween01.webm"
         type="video/webm" />
 <source src="/assets/facespace/tween01.mp4"
@@ -41,7 +39,7 @@ We can also ask whether the generated faces have some quality – for example, s
 </div>
 
 <div class="fill">
-<video controls loop=true playsinline=true>
+<video controls loop=true playsinline=true poster="/assets/facespace/tween02-preview.jpg">
 <source src="/assets/facespace/tween02.webm"
         type="video/webm" />
 <source src="/assets/facespace/tween02.mp4"
@@ -90,7 +88,7 @@ The images below were created by first generating a StyleGAN face as normal, the
 </div>
 
 <div class="fill">
-<video controls loop=true playsinline=true>
+<video controls loop=true playsinline=true poster="/assets/facespace/tween03-preview.jpg">
 <source src="/assets/facespace/tween03.webm"
         type="video/webm" />
 <source src="/assets/facespace/tween03.mp4"
@@ -129,7 +127,7 @@ The images below were created by first generating a StyleGAN face as normal, the
 </div>
 
 <div class="fill">
-<video controls loop=true playsinline=true>
+<video controls loop=true playsinline=true poster="/assets/facespace/tween06-preview.jpg">
 <source src="/assets/facespace/tween06.webm"
         type="video/webm" />
 <source src="/assets/facespace/tween06.mp4"
@@ -150,7 +148,7 @@ The images below were created by first generating a StyleGAN face as normal, the
 </div>
 
 <div class="fill">
-<video controls loop=true playsinline=true>
+<video controls loop=true playsinline=true poster="/assets/facespace/tween05-preview.jpg">
 <source src="/assets/facespace/tween05.webm"
         type="video/webm" />
 <source src="/assets/facespace/tween05.mp4"
@@ -171,7 +169,7 @@ The images below were created by first generating a StyleGAN face as normal, the
 </div>
 
 <div class="fill">
-<video controls loop=true playsinline=true>
+<video controls loop=true playsinline=true poster="/assets/facespace/tween08-preview.jpg">
 <source src="/assets/facespace/tween08.webm"
         type="video/webm" />
 <source src="/assets/facespace/tween08.mp4"
@@ -198,7 +196,7 @@ The images below were created by first generating a StyleGAN face as normal, the
 </div>
 
 <div class="fill">
-<video controls loop=true playsinline=true>
+<video controls loop=true playsinline=true poster="/assets/facespace/tween07-preview.jpg">
 <source src="/assets/facespace/tween07.webm"
         type="video/webm" />
 <source src="/assets/facespace/tween07.mp4"
@@ -225,7 +223,7 @@ The images below were created by first generating a StyleGAN face as normal, the
 </div>
 
 <div class="fill">
-<video controls loop=true playsinline=true>
+<video controls loop=true playsinline=true poster="/assets/facespace/tween04-preview.jpg">
 <source src="/assets/facespace/tween04.webm"
         type="video/webm" />
 <source src="/assets/facespace/tween04.mp4"
