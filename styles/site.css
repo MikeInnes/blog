@@ -177,6 +177,9 @@ div.highlight {
   margin-right: calc(var(--padding) * -1);
   line-height: 1em;
 }
+div.highlight::selection, div.highlight *::selection {
+  background: black;
+}
 code {
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 14px;
