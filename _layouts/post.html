@@ -22,7 +22,7 @@ layout: common
   <summary>Citation</summary>
   <div class="highlight">
     <pre>@misc{innes{{ page.date | date: "%Y" }}{{ page.id | split: '/' | last | replace: '-', '' }},
-  title=&lbrace;&lbrace;{{ page.title }}&rbrace;&rbrace;,
+  title=&lbrace;&lbrace;{{ page.title | replace: '&', '\\&' }}&rbrace;&rbrace;,
   url=&lbrace;https://mikeinnes.io{{ page.url }}&rbrace;,
   author={Innes, Michael John},
   year=&lbrace;{{ page.date | date: "%Y" }}&rbrace;,
