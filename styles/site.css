@@ -146,6 +146,10 @@ a.img {
   font-size: 90%;
 }
 
+details > summary {
+  cursor: pointer;
+}
+
 .footer {
   font-size: 90%;
   margin-top: 20px;
