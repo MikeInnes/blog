@@ -240,4 +240,4 @@ The images below were created by first generating a StyleGAN face as normal, the
 ## Notes
 
 [^1]:
-     The method is basically the same as the one used for word embeddings in [this post](http://mikeinnes.github.io/2021/03/23/colours.html). StyleGAN’s latent space lets us define a geometry on faces; by subtracting one face from another we can represent the difference between the two. The average difference between faces with and without some trait defines a direction we can move along to add or remove that trait from the final image.
+     The method is basically the same as the one used for word embeddings in [this post]({{site.url}}/2021/03/23/colours.html). StyleGAN’s latent space lets us define a geometry on faces; by subtracting one face from another we can represent the difference between the two. The average difference between faces with and without some trait defines a direction we can move along to add or remove that trait from the final image.
