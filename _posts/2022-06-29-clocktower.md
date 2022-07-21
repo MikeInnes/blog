@@ -4,7 +4,7 @@ title: Clocktower IQ
 
 Three years and two months after it launched on Kickstarter, copies of social deduction game [Blood on the Clocktower](https://www.kickstarter.com/projects/pandemoniuminstitute/blood-on-the-clocktower/description) are finally arriving in the UK. During the long wait eager players have been able to backstab each other using [print-and-play copies](http://bignose.whitetree.org/projects/botc/diy/) and the [online helper](https://clocktower.online) (particularly welcome during lockdowns). But it's nice to have the real thing in our hands. I'm here to commemorate the occassion with statistics, and in particular to show the ranking system I'm using to see how well my players are doing – just for fun, of course.
 
-In Clocktower a small team of evil players is secretly bumping people off, one by one. The good majority must find the traitors before everyone is dead. Everyone claims to be good, of course, but subtle inconsistencies (or brazen fibs) in the group's information will arouse suspicions. If the good team lynches the Demon, head of the evil team, in time, they win; otherwise, evil wins. Winning a great game of Clocktower will truly make you feel like Sherlock Holmes (or perhaps Moriarty).
+In Clocktower a small team of evil players is secretly bumping people off, one by one. The good majority must find those traitors before everyone is dead. Everyone claims to be good, of course, but subtle inconsistencies (or brazen fibs) in the group's information will arouse suspicions. If the good team lynches the Demon, head of the evil team, in time, they win; otherwise, evil does. Winning a great game of Clocktower will truly make you feel like Sherlock Holmes (or perhaps Moriarty).
 
 Modelling the game statistically can help us with two related goals. Firstly, we can learn about players and how good they are (or aren't) at the game, as with Elo ratings in chess. Secondly, and perhaps more interestingly, we can learn about the game itself. Are the good and evil teams balanced? Is it, in fact, a game of skill, or is the outcome a coin flip? What effect does the storyteller (who runs the game) have on the outcome – are some moderators better at balancing the game than others?
 
@@ -52,6 +52,6 @@ Character roles are also excluded, for now. Aside from data-hungriness, it's sig
 
 Finally, what is the impact of the storyteller? It's easy to apply per-person biases to test whether moderators play favourites. More interesting is to check whether they are effectively balancing teams of disparate skill. If so, a game with a novice and expert team will nonetheless be quite uncertain; the storyteller has increased [[\epsilon]]. Unfortunately it's quite difficult to implement this variation in Infer.net, the tool I'm using for inference, so the idea will have to wait.
 
-Early days. Even though it's premature to draw any interesting conclusions from this, I'm hoping that releasing the tool will encourage others to play with it and record more data. [Enjoy.](https://github.com/MikeInnes/clocktower-iq)
+Early days. Even though it's early to draw conclusions, I'm hoping that releasing the tool will encourage others to play with it and record more data. [Enjoy.](https://github.com/MikeInnes/clocktower-iq)
 
 ## Notes
