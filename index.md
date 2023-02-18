@@ -13,11 +13,11 @@ title: Home
 
 ## Some things I've worked on
 
-* [Julia](https://julialang.org/), a programming language
-* [Flux](https://en.wikipedia.org/wiki/Flux_(machine-learning_framework)), a machine learning system
-* [Zygote](https://github.com/FluxML/Zygote.jl), an algorithmic differentiation engine
-* [Juno](http://junolab.org), a live-coding IDE
-* [Various miscellaneous packages](https://github.com/MikeInnes/)
+* [Julia](https://julialang.org/), a fast programming language
+* [Rel](https://relational.ai), a datalog with probabilistic programming
+* [Flux](https://en.wikipedia.org/wiki/Flux_(machine-learning_framework)) and [Zygote](https://github.com/FluxML/Zygote.jl), machine learning systems
+* [Juno](http://junolab.org), a live-coding IDE (now [Julia VS Code](https://www.julia-vscode.org))
+* [Miscellaneous open-source projects](https://github.com/MikeInnes/)
 
 ## Some things you can click on
 
