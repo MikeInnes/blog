@@ -19,7 +19,7 @@ title: Home
 * [Juno](http://junolab.org), a live-coding IDE (now [Julia VS Code](https://www.julia-vscode.org))
 * [Miscellaneous open-source projects](https://github.com/MikeInnes/)
 
-## Some things you can click on
+## Some things you can click
 
 [GitHub](https://github.com/MikeInnes), [Twitter](https://twitter.com/MikeJInnes), [Publications](https://scholar.google.co.uk/citations?user=zffDj88AAAAJ&hl=en), [Blog]({{site.url}}), [Email](mailto:complaints@mikeinnes.io)
 
@@ -28,23 +28,35 @@ title: Home
 ## Some things you can read
 
 General:
-<ul>
+<ul class="posts">
 {% for post in site.posts %}
 {% if post.tags contains 'general' %}
 <li>
-  <a href="{{post.url}}">{{post.title}}</a> ({{post.date | date: '%B %Y' }})
+  <a href="{{post.url}}">{{post.title}}</a> <span class="date">{{post.date | date: '%B %Y' }}</span>
 </li>
 {% endif %}
 {% endfor %}
 </ul>
 
-Technical:
-<ul>
+Language Design:
+
+<ul class="posts">
+{% for post in site.posts %}
+{% if post.tags contains 'languages' %}
+<li>
+  <a href="{{post.url}}">{{post.title}}</a> <span class="date">{{post.date | date: '%B %Y' }}</span>
+</li>
+{% endif %}
+{% endfor %}
+</ul>
+
+Infodumps:
+<ul class="posts">
 {% for post in site.posts %}
 {% assign ntags = post.tags | size %}
 {% if post.tags contains 'infodump' or ntags == 0 %}
 <li>
-  <a href="{{post.url}}">{{post.title}}</a> ({{post.date | date: '%B %Y' }})
+  <a href="{{post.url}}">{{post.title}}</a> <span class="date">{{post.date | date: '%B %Y' }}</span>
 </li>
 {% endif %}
 {% endfor %}

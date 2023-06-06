@@ -1,5 +1,6 @@
 ---
 title: Transducers & Effects
+tags: languages
 ---
 
 Clojure has introduced a very interesting idea called ‘transducers’, which decouple sequence transformations (mapping, filtering etc) from sequence implementations like vectors, lazy lists and channels. Transducers and their benefits are well-covered elsewhere, but I’d like to explore some tradeoffs, and compare an alternative (and extremely hypothetical) design based on a staple of the functional programming world, effect handlers.

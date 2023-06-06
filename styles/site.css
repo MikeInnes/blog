@@ -92,6 +92,12 @@ a.footnote:hover, a.reversefootnote:hover {
   top: -1px;
 }
 
+ul.posts .date {
+  float: right;
+  color: hsl(0, 0%, 60%);
+  font-size: 75%;
+}
+
 .desc {
   font-size: 90%;
   text-align: right;

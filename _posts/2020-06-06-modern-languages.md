@@ -1,5 +1,6 @@
 ---
 title: The Modern Language Designer
+tags: languages
 ---
 
 Programming language design and implementation is, always has been, and likely always will be, hard. But it’s hard today for completely different reasons to those fifty years ago, when the PL field first bloomed. In the past a budding language designer more or less just had to hack together a parser, throw out machine code and call it a day (albeit this is harder than it sounds with then-current tools). In 2020 such a language could be a weekend project – but in turn, language designers face many new challenges and a much higher bar for success.
