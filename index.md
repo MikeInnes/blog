@@ -39,7 +39,6 @@ General:
 </ul>
 
 Language Design:
-
 <ul class="posts">
 {% for post in site.posts %}
 {% if post.tags contains 'languages' %}
