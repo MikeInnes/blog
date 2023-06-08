@@ -173,12 +173,9 @@ details > summary {
 .footer {
   font-size: 90%;
   margin-top: 20px;
-  color: #535353;
-  width: 100%;
+  text-align: center;
 }
-.footer td {
-  width: 33%;
-}
+
 .footer .home {
   text-align: center;
 }
