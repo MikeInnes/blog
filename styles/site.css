@@ -98,6 +98,12 @@ ul.posts .date {
   font-size: 75%;
 }
 
+@media only screen and (max-width: 700px) {
+  ul.posts .date {
+    display: none;
+  }
+}
+
 .desc {
   font-size: 90%;
   text-align: right;
