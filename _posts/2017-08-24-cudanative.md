@@ -1,5 +1,6 @@
 ---
 title: Generic GPU Kernels
+tags: infodump
 ---
 
 Julia has a library called [CUDAnative](https://github.com/JuliaGPU/CUDAnative.jl), which hacks the compiler to run your code on GPUs.
@@ -154,8 +155,8 @@ julia> σ(x) = 1 / (1 + exp(-x))
 julia> σ.(xs)
 1024-element CuArray{Float64,1}:
  0.547526
- 0.6911  
- ⋮       
+ 0.6911
+ ⋮
 ```
 
 (Which, if we generalise `kernel_vadd` in the ways outlined above, is just an "add" using the `σ` function and a single input.)
@@ -207,10 +208,10 @@ julia> f.(xs)
 
 julia> σ.(xs)
 1024-element CuArray{ForwardDiff.Dual{Void,Float64,1},1}:
- Dual{Void}(0.731059,0.196612)   
- Dual{Void}(0.880797,0.104994)   
- Dual{Void}(0.952574,0.0451767)  
-            ⋮                    
+ Dual{Void}(0.731059,0.196612)
+ Dual{Void}(0.880797,0.104994)
+ Dual{Void}(0.952574,0.0451767)
+            ⋮
 ```
 
 Not only is there no overhead compared to hand-writing the necessary cuda kernel for this; there's no overhead at all! In my benchmarks, taking a derivative using dual numbers is *just as fast as computing only the value* with raw floats. Pretty impressive.
@@ -226,9 +227,9 @@ ys = CuArray(randn(1, 100, 5, 5, 5))
 100×100×5×5×5 Array{ForwardDiff.Dual{Void,Float64,1},5}:
 [:, :, 1, 1, 1] =
    Dual{Void}(0.0127874,-0.427122)  …   Dual{Void}(-0.908558,-0.891798)
-   Dual{Void}(0.97554,-2.56273)     …   Dual{Void}(-8.22101,-5.35079)  
-  Dual{Void}(-7.13571,-4.27122)          Dual{Void}(2.14025,-8.91798)  
-              ⋮                     ⋱                             
+   Dual{Void}(0.97554,-2.56273)     …   Dual{Void}(-8.22101,-5.35079)
+  Dual{Void}(-7.13571,-4.27122)          Dual{Void}(2.14025,-8.91798)
+              ⋮                     ⋱
 ```
 
 The full broadcasting machinery in CuArrays is [*60 lines long*](https://github.com/FluxML/CuArrays.jl/blob/9a2eafa19966cf5613308bbcda1db0e1c3e95358/src/broadcast.jl#L4-L64). While not completely trivial, this is an incredible amount of functionality to get from this much code. CuArrays itself is under 400 source lines, while providing almost all general array operations (indexing, concatenation, permutedims etc) in a similarly generic way.

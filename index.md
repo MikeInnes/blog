@@ -31,8 +31,9 @@ General:
 <ul class="posts">
 {% for post in site.posts %}
 {% if post.tags contains 'general' %}
-<li>
-  <a href="{{post.url}}">{{post.title}}</a> <span class="date">{{post.date | date: '%B %Y' }}</span>
+<li class="post {% if post.tags contains 'popular' %}popular{% endif %}">
+  <span class="link"><a href="{{post.url}}">{{post.title}}</a></span>
+  <span class="date">{{post.date | date: '%B %Y' }}</span>
 </li>
 {% endif %}
 {% endfor %}
@@ -42,8 +43,9 @@ Language Design:
 <ul class="posts">
 {% for post in site.posts %}
 {% if post.tags contains 'languages' %}
-<li>
-  <a href="{{post.url}}">{{post.title}}</a> <span class="date">{{post.date | date: '%B %Y' }}</span>
+<li class="post {% if post.tags contains 'popular' %}popular{% endif %}">
+  <span class="link"><a href="{{post.url}}">{{post.title}}</a></span>
+  <span class="date">{{post.date | date: '%B %Y' }}</span>
 </li>
 {% endif %}
 {% endfor %}
@@ -54,11 +56,12 @@ Infodumps:
 {% for post in site.posts %}
 {% assign ntags = post.tags | size %}
 {% if post.tags contains 'infodump' or ntags == 0 %}
-<li>
-  <a href="{{post.url}}">{{post.title}}</a> <span class="date">{{post.date | date: '%B %Y' }}</span>
+<li class="post {% if post.tags contains 'popular' %}popular{% endif %}">
+  <span class="link"><a href="{{post.url}}">{{post.title}}</a></span>
+  <span class="date">{{post.date | date: '%B %Y' }}</span>
 </li>
 {% endif %}
 {% endfor %}
 </ul>
 
-[RSS feed](/feed.xml)
+Starred posts ⭐ are popular. [RSS feed](/feed.xml)

@@ -98,6 +98,14 @@ ul.posts .date {
   font-size: 75%;
 }
 
+ul.posts li.post.popular a {
+  /* font-weight: bold; */
+}
+
+ul.posts li.post.popular .link::after {
+  content: " ⭐";
+}
+
 @media only screen and (max-width: 700px) {
   ul.posts .date {
     display: none;
