@@ -2,7 +2,7 @@
 title: Home
 ---
 
-# Mike J Innes
+# Machine Lines
 
 ## Some things you should know
 
