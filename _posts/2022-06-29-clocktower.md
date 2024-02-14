@@ -53,5 +53,3 @@ Character roles are also excluded, for now. Aside from data-hungriness, it's sig
 Finally, what is the impact of the storyteller? It's easy to apply per-person biases to test whether moderators play favourites. More interesting is to check whether they are effectively balancing teams of disparate skill. If so, a game with a novice and expert team will nonetheless be quite uncertain; the storyteller has increased [[\epsilon]]. Unfortunately it's quite difficult to implement this variation in Infer.net, the tool I'm using for inference, so the idea will have to wait.
 
 Early days. Even though it's early to draw conclusions, I'm hoping that releasing the tool will encourage others to play with it and record more data. [Enjoy.](https://github.com/MikeInnes/clocktower-iq)
-
-## Notes

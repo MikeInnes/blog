@@ -56,7 +56,6 @@ h2.description {
 h2 {
   font-size: 105%;
   margin-top: 2em;
-  margin-bottom: -15px;
   font-weight: 900;
 }
 h3 {
@@ -64,6 +63,10 @@ h3 {
   margin-top: 1em;
   font-weight: normal;
   margin-bottom: -15px;
+}
+
+h2+p {
+  margin-top: 0;
 }
 
 hr {
@@ -83,6 +86,7 @@ a {
 a:hover {
   border-color: rgb(230, 230, 230);
 }
+
 a.footnote, a.reversefootnote {
   border: none;
   font-weight: inherit;

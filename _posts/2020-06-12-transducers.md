@@ -224,9 +224,6 @@ So we can draw a clear path from list comprehensions to async blocks, two featur
 
 Transducers are a neat and ingenious solution to a real issue, but they sit alongside several other abstractions for what is effectively the same problem (list comprehensions, async/channel blocks, generators, direct implementations of `map` etc). With a sufficiently general and unifying sequence-transform abstraction, we might not need them.
 
-
-## Notes
-
 [^1]:
      F#’s `seq` only supports creating lazy seqs via state machines, though, so it doesn’t support generic sequence transformations on its own.
 
