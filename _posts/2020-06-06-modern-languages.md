@@ -65,9 +65,6 @@ The fact that new languages can target an optimising backend like LLVM or WebAss
 
 I don’t know if these things will be any easier in 2030, or what challenges language designers in that decade will face. But I expect their jobs will still be pretty hard.
 
-
-<!-- ## Modern Notes -->
-
 [^1]:
      A possible recent exception is Clojure, whose marriage of Lisp s-exprs with JSON-like data notation has been influential.
 

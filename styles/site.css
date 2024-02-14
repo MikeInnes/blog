@@ -220,3 +220,30 @@ code.highlighter-rouge {
 ::selection {
   background: #ffff00; /* WebKit/Blink Browsers */
 }
+
+.littlefoot {
+  --button-background-color: var(--background);
+  --button-active-background-color: #c6c6c6;
+  --button-text-color: #fff;
+  --button-padding: 0 0.6em;
+  /* --button-margin: 0 0 0 0.8em; */
+  --button-height: 1.4em;
+
+  --popover-background-color: white;
+  --popover-shadow: none;
+  --popover-border: 3px solid var(--background);
+  --popover-font-family: Merriweather,Georgia,Cambria,"Times New Roman",Times,serif;;
+  --popover-font-size: 0.8em;
+  --popover-font-weight: lighter;
+  --popover-line-height: 1.5;
+  --popover-vertical-padding: 0em;
+  --popover-horizontal-padding: 2em;
+}
+
+.littlefoot__popover {
+  opacity: 0%;
+}
+
+.littlefoot__popover.is-active {
+  opacity: 100%;
+}
