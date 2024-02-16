@@ -23,8 +23,6 @@ title: Home
 
 [GitHub](https://github.com/MikeInnes), [Twitter](https://twitter.com/MikeJInnes), [Publications](https://scholar.google.co.uk/citations?user=zffDj88AAAAJ&hl=en), [Blog]({{site.url}}), [Email](mailto:complaints@mikeinnes.io)
 
-[Addresses, keys etc.](keys.html)
-
 ## Some things you can read
 
 General:
