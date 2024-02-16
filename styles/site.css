@@ -9,18 +9,24 @@ html {
 
 body {
   margin: 0 auto 0 auto;
-  font-family: Merriweather,Georgia,Cambria,"Times New Roman",Times,serif;
-  font-size: 16px;
-  font-weight: lighter;
-  line-height: 1.8;
   max-width: 700px;
   min-height: 100%;
   padding-top: 5px;
   padding-bottom: 50%;
+
+  font-family: "Gill Sans", sans-serif;
+  line-height: 1.8;
+  font-size: 16px;
+  font-weight: lighter;
 }
 @media only screen and (min-width: 700px) {
   body {
     background: var(--background);
+  }
+}
+@media (min-resolution: 150dpi) {
+  body {
+    font-family: Merriweather,Georgia,Cambria,"Gill Sans",sans-serif;
   }
 }
 .content > p:last-of-type::after {
@@ -40,6 +46,7 @@ body {
 }
 
 h1, h2, h3, h4 {
+  font-family: Merriweather,Georgia,Cambria,"Gill Sans",sans-serif;
   margin: 0;
 }
 h1 {
@@ -65,7 +72,7 @@ h3 {
   margin-bottom: -15px;
 }
 
-h2+p {
+h2+p, h2+ul {
   margin-top: 0;
 }
 
@@ -232,12 +239,17 @@ code.highlighter-rouge {
   --popover-background-color: white;
   --popover-shadow: none;
   --popover-border: 3px solid var(--background);
-  --popover-font-family: Merriweather,Georgia,Cambria,"Times New Roman",Times,serif;;
+  --popover-font-family: "Gill Sans",sans-serif;
   --popover-font-size: 0.8em;
   --popover-font-weight: lighter;
   --popover-line-height: 1.5;
   --popover-vertical-padding: 0em;
   --popover-horizontal-padding: 2em;
+}
+@media (min-resolution: 150dpi) {
+  .littlefoot {
+    --popover-font-family: Merriweather,Georgia,Cambria,"Gill Sans",sans-serif;
+  }
 }
 
 .littlefoot__popover {
