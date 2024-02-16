@@ -1,5 +1,6 @@
 kramdown:
   input: GFM
+  math_engine: katex
 plugins:
   - jekyll-feed
 title: Mike Innes's Blog
