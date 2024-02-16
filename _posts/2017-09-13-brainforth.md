@@ -465,5 +465,3 @@ Join us next week, when we’ll be compiling Erlang to [Piet](https://esolangs.o
 <div class="fill">
   <img src="{{site.url}}/assets/pollock.jpg" />
 </div>
-
-## Footnotes

@@ -77,5 +77,3 @@ What we can say is that (1) each sub-universe would run in eerily slowed-down ti
 [^bostrom]: Assuming that the simulation is a faithful recreation of the laws of physics, as opposed to a Bostrom-style mind game.
 
 All of this is to say – Christopher Nolan was right on the money.
-
-## Footnotes
