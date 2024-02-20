@@ -1,6 +1,6 @@
 :root {
   --padding: 25px;
-  --syntax-background: #3f3f3f;
+  --syntax-background: #272822;
   --background: rgb(235, 235, 235);
 }
 html {
@@ -210,7 +210,8 @@ div.highlight::selection, div.highlight *::selection {
 }
 code {
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 1.2;
 }
 pre {
   margin: 0;
