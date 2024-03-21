@@ -2,7 +2,6 @@
 title: Stack Shuffling
 tags: [languages]
 date: "2024-03-21"
-draft: true
 ---
 
 WebAssembly is an odd compiler target, because of its unusual mix of high- and low-level style. It gives you pointers and a flat array for your heap memory, yet no access to the program stack. It uses jump instructions for control flow, while only allowing the structured kind. It has local variables and even expressions, but instructions take and produce values through a data stack.
@@ -40,7 +39,7 @@ What if we'll need `x` again too?
 
 What if the arguments to `$bar` are `(y, x)`? What if they are `(y, z)`, but we need `x` on the stack for later? Things get hairy.
 
-The easiest solution is to dump all variables into locals immediately, and load them back whenever you need them. But this is pretty unsatisfying. To go back to our original example:
+The easiest solution is to dump all variables into locals, and load them back whenever you need them. But this is pretty unsatisfying. To go back to our original example:
 
 ```clojure
 (call $foo)
@@ -53,7 +52,7 @@ The easiest solution is to dump all variables into locals immediately, and load 
 
 If you work with functions of more than a few arguments, a horrifying amount of your code becomes `get`/`set` instructions, and many will be redundant.
 
-One option is to recognise this as a path-finding problem. Think of a set of variables on the stack, like `(x, y, z)` as a coordinate on a map. If our starting point is `(x, y)` and our destination is `(x, z, y)`, then a path from A to B is `[set y, set x, get x, get z, get y]`. Or `[set y, get y, drop, get z, get y]`. Those are both valid paths, but we specifically want the shortest, which is `[set y, get z, get y]`. Then we can turn any path into wasm instructions.
+One option is to recognise this as a path-finding problem. Think of a set of variables on the stack, like `(x, y, z)` as a coordinate on a map. If our starting point is `(x, y)` and our destination is `(x, z, y)`, then a path from A to B is `[set y, set x, get x, get z, get y]`. Or `[set y, get y, drop, get z, get y]`. Those are both valid paths, but we specifically want the shortest, which is `[set y, get z, get y]`.
 
 Lucky for us there are good, fast path-finding algorithms out there, like A* Search. Here's a little implementation of A* in stack space, in Julia.
 
