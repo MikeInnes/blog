@@ -1,0 +1,14 @@
+baseURL = 'https://mikeinnes.io/'
+languageCode = 'en-gb'
+title = 'Machine Lines'
+disableKinds = ["taxonomy", "term"]
+
+# for image tags
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputFormats]
+  [outputFormats.RSS]
+    baseName = "feed"

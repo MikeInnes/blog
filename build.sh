@@ -1,6 +1,6 @@
 if [ "$JEKYLL_ENV" = "production" ]
 then
-    jekyll build
+    hugo
 else
-    jekyll build --drafts
+    hugo --buildDrafts
 fi

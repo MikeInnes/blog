@@ -1,0 +1,49 @@
+{{ define "header" }}
+<h1>{{ site.Title }}</h1>
+{{ end}}
+
+{{ define "main" }}
+  {{ .Content }}
+  <h2>Some things you can read</h2>
+
+  General:
+  <ul class="posts">
+  {{ range site.RegularPages }}
+  {{ if in .Params.tags "general" }}
+    <li class="post{{ if in .Params.tags "popular" }} popular{{ end }}">
+      <span class="link"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></span>
+      <span class="date">{{ .Date | time.Format "Jan '06" }}</span>
+    </li>
+    {{ end }}
+  {{ end }}
+  </ul>
+
+  Language design:
+  <ul class="posts">
+  {{ range site.RegularPages }}
+  {{ if in .Params.tags "languages" }}
+    <li class="post{{ if in .Params.tags "popular" }} popular{{ end }}">
+      <span class="link"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></span>
+      <span class="date">{{ .Date | time.Format "Jan '06" }}</span>
+    </li>
+    {{ end }}
+  {{ end }}
+  </ul>
+
+  Infodump:
+  <ul class="posts">
+  {{ range site.RegularPages }}
+  {{ if or (in .Params.tags "infodump") (not .Params.tags) }}
+    <li class="post{{ if in .Params.tags "popular" }} popular{{ end }}">
+      <span class="link"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></span>
+      <span class="date">{{ .Date | time.Format "Jan '06" }}</span>
+    </li>
+    {{ end }}
+  {{ end }}
+  </ul>
+
+  Starred posts ⭐ are popular.
+  {{ with .OutputFormats.Get "rss" }}
+  <a href="{{ .Permalink }}">RSS feed</a>
+  {{ end }}
+{{ end }}
