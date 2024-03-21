@@ -8,6 +8,8 @@ disableKinds = ["taxonomy", "term"]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+  [markup.highlight]
+    style = 'monokai'
 
 [outputFormats]
   [outputFormats.RSS]

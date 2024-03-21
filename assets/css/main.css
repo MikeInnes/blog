@@ -177,8 +177,12 @@ a.img {
   font-size: 90%;
 }
 
-details > summary {
-  cursor: pointer;
+@media (min-width: 650px) {
+  details > summary {
+    cursor: pointer;
+    font-weight: normal;
+    margin-left: -0.9em;
+  }
 }
 
 .footer {
