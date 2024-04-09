@@ -3,9 +3,7 @@ aliases:
 - /2023/02/18/bing
 date: '2023-02-18'
 description: Language models embody fiction as much as fact
-tags:
-- general
-- popular
+tags: [general, popular]
 title: Deus Ex Bing
 ---
 

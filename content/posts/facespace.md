@@ -2,8 +2,7 @@
 aliases:
 - /2022/04/01/facespace
 date: '2022-04-01'
-tags:
-- general
+tags: [general]
 title: Adventures in Face Space
 ---
 

@@ -33,7 +33,7 @@
   Infodump:
   <ul class="posts">
   {{ range site.RegularPages }}
-  {{ if or (in .Params.tags "infodump") (not .Params.tags) }}
+  {{ if in .Params.tags "infodump" }}
     <li class="post{{ if in .Params.tags "popular" }} popular{{ end }}">
       <span class="link"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></span>
       <span class="date">{{ .Date | time.Format "Jan '06" }}</span>

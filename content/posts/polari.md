@@ -3,8 +3,7 @@ aliases:
 - /2020/11/03/polari
 date: '2020-11-03'
 description: Notes on “Fabulosa!”, by Paul Baker
-tags:
-- general
+tags: [general]
 title: Bona Polari
 ---
 

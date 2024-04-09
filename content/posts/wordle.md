@@ -3,6 +3,7 @@ aliases:
 - /2022/01/15/wordle
 date: '2022-01-15'
 title: Brave New Wordle
+tags: [infodump]
 ---
 
 > "Words can be like X-rays if you use them properly – they’ll go through anything."

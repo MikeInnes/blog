@@ -2,8 +2,7 @@
 aliases:
 - /2017/12/06/ml-pl
 date: '2017-12-06'
-tags:
-- languages
+tags: [languages]
 title: On Machine Learning and Programming Languages
 ---
 

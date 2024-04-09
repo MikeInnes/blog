@@ -2,9 +2,7 @@
 aliases:
 - /2016/03/21/sorting
 date: '2016-03-21'
-tags:
-- infodump
-- popular
+tags: [infodump, popular, code]
 title: Sorting a Billion Numbers
 ---
 

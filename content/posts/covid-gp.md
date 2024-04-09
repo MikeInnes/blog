@@ -3,6 +3,7 @@ aliases:
 - /2020/12/17/covid-gp
 date: '2020-12-17'
 title: Inferring transmission rates
+tags: [infodump]
 ---
 
 Here's a plot of Covid-19's reproductive rate ($R$) over time in the UK, based on daily case numbers and seroprevalence surveys. Because the estimates are uncertain, each light blue line on the plot shows a possible path that $R$ could have taken, with all paths together giving a sense of what's plausible on any given day.

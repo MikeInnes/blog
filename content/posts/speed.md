@@ -3,8 +3,7 @@ aliases:
 - /2014/05/26/speed
 date: '2014-05-26'
 description: Performance matters, even if you don't write fast code
-tags:
-- languages
+tags: [languages]
 title: Speed in Programming Languages
 ---
 

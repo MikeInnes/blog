@@ -3,6 +3,7 @@ aliases:
 - /2021/02/25/vi
 date: '2021-02-25'
 title: Variational Inference
+tags: [infodump]
 ---
 
 The goal of statistical inference is to tell us things that we didn't know based on things we do. The things want to learn about could be anything – [phylogenetic trees](https://www.beast2.org), for example – but usually we'll talk about numerical summaries, like "the GDP of France", or "the reproductive rate of covid-19". In mathematical notation we'll label the set of numbers we don't know $\theta \in \mathbb R^n$ (as in, $\theta$ is a list of $n$ unknown numbers) and the numbers we do know $X \in \mathbb R^m$.

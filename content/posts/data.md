@@ -2,8 +2,7 @@
 aliases:
 - /2023/05/30/data
 date: '2023-05-30'
-tags:
-- languages
+tags: [languages]
 title: Data Structures, Data Modelling
 ---
 

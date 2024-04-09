@@ -3,8 +3,7 @@ aliases:
 - /2020/10/09/zen
 date: '2020-10-09'
 description: Mindfulness apps compete to bring Buddhist ideas to a mass market
-tags:
-- general
+tags: [general]
 title: Zen there were none
 ---
 

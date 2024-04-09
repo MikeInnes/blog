@@ -3,6 +3,7 @@ aliases:
 - /2017/11/15/turingception
 date: '2017-11-15'
 title: Recursive Self-Simulation
+tags: [infodump]
 ---
 
 Can the Universe Simulate Itself?

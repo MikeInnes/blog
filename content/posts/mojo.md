@@ -2,9 +2,7 @@
 aliases:
 - /2023/06/06/mojo
 date: '2023-06-06'
-tags:
-- languages
-- popular
+tags: [languages, popular]
 title: Finding Your Mojo
 ---
 

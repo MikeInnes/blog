@@ -3,8 +3,7 @@ aliases:
 - /2021/07/30/author
 date: '2021-07-30'
 description: A story's relationship to its creator depends on the medium
-tags:
-- general
+tags: [general]
 title: Schrödinger’s Author
 ---
 

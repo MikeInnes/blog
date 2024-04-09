@@ -2,8 +2,7 @@
 aliases:
 - /2020/06/06/modern-languages
 date: '2020-06-06'
-tags:
-- languages
+tags: [languages]
 title: The Modern Language Designer
 ---
 

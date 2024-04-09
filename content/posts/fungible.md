@@ -3,8 +3,7 @@ aliases:
 - /2022/03/02/fungible
 date: '2022-03-02'
 description: NFTs and traditional art have a lot in common
-tags:
-- general
+tags: [general]
 title: The Fun in Non-Fungible
 ---
 

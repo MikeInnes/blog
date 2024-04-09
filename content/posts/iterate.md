@@ -2,8 +2,7 @@
 aliases:
 - /2020/06/04/iterate
 date: '2020-06-04'
-tags:
-- languages
+tags: [languages]
 title: Iterate on it
 ---
 

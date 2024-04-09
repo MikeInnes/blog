@@ -3,6 +3,7 @@ aliases:
 - /2022/06/29/clocktower
 date: '2022-06-29'
 title: Clocktower IQ
+tags: [infodump]
 ---
 
 Three years and two months after it launched on Kickstarter, copies of social deduction game [Blood on the Clocktower](https://www.kickstarter.com/projects/pandemoniuminstitute/blood-on-the-clocktower/description) are finally arriving in the UK. During the long wait eager players have been able to backstab each other using [print-and-play copies](http://bignose.whitetree.org/projects/botc/diy/) and the [online helper](https://clocktower.online) (particularly welcome during lockdowns). But it's nice to have the real thing in our hands. I'm here to commemorate the occassion with statistics, and in particular to show the ranking system I'm using to see how well my players are doing – just for fun, of course.

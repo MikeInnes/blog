@@ -2,8 +2,7 @@
 aliases:
 - /2020/06/12/transducers
 date: '2020-06-12'
-tags:
-- languages
+tags: [languages]
 title: Transducers & Effects
 ---
 

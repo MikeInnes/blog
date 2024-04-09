@@ -1,6 +1,6 @@
 ---
 title: Stack Shuffling
-tags: [infodump]
+tags: [infodump, code]
 date: "2024-03-21"
 ---
 

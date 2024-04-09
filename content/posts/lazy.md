@@ -3,6 +3,7 @@ aliases:
 - /2017/06/05/lazy
 date: '2017-06-05'
 title: The Lazy List
+tags: [infodump, code]
 ---
 
 "Any sufficiently advanced technology is indistinguishable from magic," go the famous words of Arthur C. Clarke. Often with seemingly-magical technology, a small dose of knowledge is enough to wash away our wide-eyed awe and bring us back to sweet, comfortable cynicism. Yet some ideas don't lose their lustre so easily; it can be a little hard to believe they work even once you understand them.

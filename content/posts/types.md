@@ -2,8 +2,7 @@
 aliases:
 - /2020/05/19/types
 date: '2020-05-19'
-tags:
-- languages
+tags: [languages]
 title: The Many Types of Types
 ---
 

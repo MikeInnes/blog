@@ -4,6 +4,7 @@ aliases:
 date: '2017-09-13'
 description: Building abstractions in brainfuck
 title: Taming the Tarpit
+tags: [infodump, code]
 ---
 
 Have you ever seen a programming language like this?
