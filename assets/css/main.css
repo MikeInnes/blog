@@ -94,13 +94,16 @@ a:hover {
   border-color: rgb(230, 230, 230);
 }
 
-a.footnote, a.reversefootnote {
+a.footnote-ref, a.footnote-backref {
   border: none;
   font-weight: inherit;
 }
-a.footnote:hover, a.reversefootnote:hover {
+a.footnote-ref:hover, a.footnote-backref:hover {
   position: relative;
   top: -1px;
+}
+.footnotes hr {
+  display: none;
 }
 
 ul.posts .date {
