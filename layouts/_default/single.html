@@ -28,9 +28,13 @@
 }</pre>
     </div>
   </details>
+  {{ if or (in .Params.tags "languages") (in .Params.tags "code") }}
+  <hr />
+  <p style="font-size: 0.9em;"><em>I write regularly about language and compiler design in email updates, which you can get by <a href="https://github.com/sponsors/MikeInnes">sponsoring my work</a>.</em></p>
+  {{ end }}
 {{ end }}
 
 {{ define "footer" }}
-<script src="https://unpkg.com/littlefoot/dist/littlefoot.js" type="application/javascript"></script>
 <div style="text-align: center;"><a href="/">Home</a></div>
+<script src="https://unpkg.com/littlefoot/dist/littlefoot.js" type="application/javascript"></script>
 {{ end }}
