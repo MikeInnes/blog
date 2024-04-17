@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2021/05/06/edits
+- /2021/05/06/edits.html
 date: '2021-05-06'
 tags: [general]
 title: Edit Policy

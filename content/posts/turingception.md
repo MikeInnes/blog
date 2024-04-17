@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2017/11/15/turingception
+- /2017/11/15/turingception.html
 date: '2017-11-15'
 title: Recursive Self-Simulation
 tags: [infodump]

@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2021/02/25/vi
+- /2021/02/25/vi.html
 date: '2021-02-25'
 title: Variational Inference
 tags: [infodump]

@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2017/06/05/lazy
+- /2017/06/05/lazy.html
 date: '2017-06-05'
 title: The Lazy List
 tags: [infodump, code]

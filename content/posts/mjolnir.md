@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2020/07/29/mjolnir
+- /2020/07/29/mjolnir.html
 date: '2020-07-29'
 tags: [languages]
 title: Partial Evaluation & Abstract Interpretation

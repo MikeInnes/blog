@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2022/03/02/fungible
+- /2022/03/02/fungible.html
 date: '2022-03-02'
 description: NFTs and traditional art have a lot in common
 tags: [general]

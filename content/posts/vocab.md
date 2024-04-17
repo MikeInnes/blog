@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2022/02/26/vocab
+- /2022/02/26/vocab.html
 date: '2022-02-26'
 tags: [general, popular]
 title: Test Your Vocab

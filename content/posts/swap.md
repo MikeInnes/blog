@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2022/06/24/swap
+- /2022/06/24/swap.html
 date: '2022-06-24'
 tags: [languages]
 title: Imperative Syntax, Functional Semantics

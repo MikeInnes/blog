@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2023/02/18/bing
+- /2023/02/18/bing.html
 date: '2023-02-18'
 description: Language models embody fiction as much as fact
 tags: [general, popular]

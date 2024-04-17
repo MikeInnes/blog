@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2021/03/23/colours
+- /2021/03/23/colours.html
 date: '2021-03-23'
 description: Language analysis helps explain how the blind understand colour
 tags: [general]

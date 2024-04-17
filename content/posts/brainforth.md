@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2017/09/13/brainforth
+- /2017/09/13/brainforth.html
 date: '2017-09-13'
 description: Building abstractions in brainfuck
 title: Taming the Tarpit

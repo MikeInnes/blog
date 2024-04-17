@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2021/07/30/author
+- /2021/07/30/author.html
 date: '2021-07-30'
 description: A story's relationship to its creator depends on the medium
 tags: [general]

@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2022/06/29/clocktower
+- /2022/06/29/clocktower.html
 date: '2022-06-29'
 title: Clocktower IQ
 tags: [infodump]

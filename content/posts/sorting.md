@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2016/03/21/sorting
+- /2016/03/21/sorting.html
 date: '2016-03-21'
 tags: [infodump, popular, code]
 title: Sorting a Billion Numbers

@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2017/08/24/cudanative
+- /2017/08/24/cudanative.html
 date: '2017-08-24'
 tags: [infodump, code]
 title: Generic GPU Kernels

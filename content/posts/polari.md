@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2020/11/03/polari
+- /2020/11/03/polari.html
 date: '2020-11-03'
 description: Notes on “Fabulosa!”, by Paul Baker
 tags: [general]

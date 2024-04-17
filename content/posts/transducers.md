@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2020/06/12/transducers
+- /2020/06/12/transducers.html
 date: '2020-06-12'
 tags: [languages]
 title: Transducers & Effects

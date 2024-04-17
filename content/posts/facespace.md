@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2022/04/01/facespace
+- /2022/04/01/facespace.html
 date: '2022-04-01'
 tags: [general]
 title: Adventures in Face Space

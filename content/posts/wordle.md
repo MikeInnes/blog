@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2022/01/15/wordle
+- /2022/01/15/wordle.html
 date: '2022-01-15'
 title: Brave New Wordle
 tags: [infodump]

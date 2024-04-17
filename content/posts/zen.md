@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2020/10/09/zen
+- /2020/10/09/zen.html
 date: '2020-10-09'
 description: Mindfulness apps compete to bring Buddhist ideas to a mass market
 tags: [general]

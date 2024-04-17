@@ -1,6 +1,7 @@
 ---
 aliases:
 - /2020/12/17/covid-gp
+- /2020/12/17/covid-gp.html
 date: '2020-12-17'
 title: Inferring transmission rates
 tags: [infodump]
