@@ -8,7 +8,7 @@ tags: [general]
 title: Zen there were none
 ---
 
-Grouchy London Underground riders are offered all kinds of stress-reducing therapies. From time immemorial, the tube’s fluorescent-lit carriages have been tiled by crystal clear oceans, comprehensive holiday packages, and sharp-suited individuals who swear by particular vitamin pills. But a more recent prescription is a very old one: meditation, a Buddhist practice dating back to the fourth century BC.
+Grouchy passengers on the London Underground are offered all kinds of stress-reducing therapies. From time immemorial, the tube’s fluorescent-lit carriages have been tiled with images of crystal clear oceans, comprehensive holiday packages, and sharp-suited individuals swearing by particular vitamin pills. But a more recent prescription is a very old one: meditation, a Buddhist practice dating back to the fourth century BC.
 
 Meditation has not, historically, been a very lucrative industry. The practitioner’s biggest outlay might be for their Zafu, a round floor cushion. Past that, sitting quietly does not require a credit card.[^1] But startups are disrupting the age-old silence; the rise of podcasting and in-app subscription presents the would-be Sensei with a business opportunity. Mobile apps can now offer guided meditations, with a kindly voice from the listener’s phone encouraging focus on breathing and awareness of surroundings.
 
