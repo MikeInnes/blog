@@ -1,4 +1,4 @@
-if [ "$JEKYLL_ENV" = "production" ]
+if [ "$CF_PAGES_BRANCH" = "master" ]
 then
     hugo
 else
