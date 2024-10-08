@@ -69,7 +69,7 @@ Julia's performance depends heavily on its type inference. Inference is the only
 I want to emphasise the difference between (static) types and tags. If you have a function `x = f()` that returns an integer or a string at random, the inferred type might be `x::Union{Int,String}`. But `typeof(x)` won’t be `Union{Int,String}`; it will either be `Int` or `String`, because that’s the tag of the actual object that `f()` returned in that moment. The variable `x` is like a hole that we’re trying to put something into. It has to have the right shape, but it doesn’t have to have _exactly_ the right shape, it just has to have space for whatever you might put in it. The static _type_ of `x` is the shape of the hole, and the dynamic _tag_ of x is the shape of whatever’s inside right now. These are very different concepts and, confusingly, Julia uses the same term for both.[^4]
 
 <div class="fill">
-  <img src="/assets/types.png" style="width: 60%" />
+  <img src="types.png" style="width: 60%" />
   <div class="caption">
     You can't fit a square peg in a round hole, but you can fit a square peg in a <code>round ∪ square</code> hole.
   </div>

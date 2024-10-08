@@ -103,19 +103,19 @@ We can’t test you on every English word – there are hundreds of thousands o
 
 Ideally we’d show you a small sample of words, chosen at random, and see what fraction you understand. But the way words are distributed in English makes this tricky. The plot below shows the top 50, ordered by how often they appear in writing. You can see that a few of them (like _the_ and _and_) are really popular, while the rest are less well used.
 
-<img src="/assets/vocab/zipf1.png" style="width:100%" />
+<img src="zipf1.png" style="width:100%" />
 <div class="caption">The 50 most popular words, and their frequencies.</div>
 
 That pattern persists as we look down the list. However many words we include, there are a always a small number of celebrities and a lot of proletarians. Zooming out, English has a few thousand widely-used words, tens of thousands of unusual ones, and millions more that are esoteric, archaic or obsolete.
 
-<img src="/assets/vocab/zipf2.png" style="width:100%" />
+<img src="zipf2.png" style="width:100%" />
 <div class="caption">The 50<sup>th</sup> to 500<sup>th</sup> most popular words, and their frequencies.</div>
 
 The upshot is that a quiz based on randomly sampled words would be tedious, because almost all of them would be obscure beyond recognition. To avoid that we have to be a bit cleverer.
 
 The shape of this graph can also be to our advantage. It shows that a word twice as far down the list gets used roughly half as often, an effect known as [Zipf’s law](https://en.wikipedia.org/wiki/Zipf%27s_law). So a word’s rank gives an idea of its popularity, which in turn affects how likely you are to recognise it. That makes it possible to talk about your confidence in different parts of the list, separating the common and uncommon words, rather than dealing with all of them at once.
 
-<img src="/assets/vocab/sigmoid.png" style="width:100%" />
+<img src="sigmoid.png" style="width:100%" />
 <div class="caption">A example "vocab curve" showing the proportion of words known at different levels of popularity. The grey background area shows relative frequencies at each rank.</div>
 
 This plot shows what someone’s “vocab curve” might look like – that is, the proportion of words they recognise in different parts of the list. The upside-down-S shape represents someone who knows almost all the common words, some unusual ones, and few arcane ones. Everyone's curve will be different, but if we can find yours roughly, we know your chance of recognising every word in English. Then we can count up the total.
@@ -196,7 +196,7 @@ Infinity could even be the right choice in principle. András Kornai has argued 
 <script>
 let id = 1605; // first question pre-loaded
 let answerid = 1;
-let worker = new Worker('/assets/vocab/worker.js');
+let worker = new Worker('worker.js');
 
 function format(n) {
     return Math.round(n).toLocaleString(undefined, {maximumSignificantDigits: 2});

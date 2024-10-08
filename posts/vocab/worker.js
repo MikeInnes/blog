@@ -290,7 +290,7 @@ function waitForAnswer(ep, words, seen) {
 }
 
 async function main() {
-    let resp = await fetch('/assets/vocab/vocab.json');
+    let resp = await fetch('vocab.json');
     let words = await resp.json();
     console.log(words[1605][2]); // First word is pre-loaded
     let seen = new Set();

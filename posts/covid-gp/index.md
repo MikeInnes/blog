@@ -9,7 +9,7 @@ tags: [infodump]
 
 Here's a plot of Covid-19's reproductive rate ($R$) over time in the UK, based on daily case numbers and seroprevalence surveys. Because the estimates are uncertain, each light blue line on the plot shows a possible path that $R$ could have taken, with all paths together giving a sense of what's plausible on any given day.
 
-<img src="/assets/covid-r.png" style="width:100%" />
+<img src="covid-r.png" style="width:100%" />
 <div class="caption">
 Estimates of the reproductive rate in the UK, up to 16th December 2020.
 </div>
@@ -34,7 +34,7 @@ These represent three buckets, for those who are susceptible to a new disease (l
 
 If we solve these equations we'll end up with a plot of the disease's course like this.
 
-<img src="/assets/sir.png" style="width:100%" />
+<img src="sir.png" style="width:100%" />
 <div class="caption">
 SIR model output. Each category contains a proportion of the whole population, from zero to one. The shape of the "infected" curve corresponds roughly to case counts.
 </div>

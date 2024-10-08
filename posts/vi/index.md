@@ -134,7 +134,7 @@ $$
 Here $x$ and $y$ are tightly correlated. Here's what the posterior looks like, compared to what we calculate using VI.
 
 <div style="text-align:center">
-<img src="/assets/2021-02-vi/vi.png" class="img-narrow" />
+<img src="vi.png" class="img-narrow" />
 </div>
 
 Notice that because $x$ and $y$ are treated as independent, the posterior plot can only be a horizontal or vertical elipse (or a circle). We simply can't represent the slanted shape of the true posterior here. Instead we end up with a small disc, because being any bigger would include more unlikely values of $x$ and $y$ than likely ones.
@@ -148,7 +148,7 @@ If our representation of the posterior distribution $\hat Q$ is too restrictive,
 One simple way to do so is to use the idea of a mixture model, in which a more complex distribution is made up of a combination of simpler ones. Consider adult human heights: Men and women both have normally-distributed heights, but with different averages. The overall distribution is non-Gaussian but still simple to describe formally.
 
 <div style="text-align:center">
-<img src="/assets/2021-02-vi/heights.png" class="img-narrow" />
+<img src="heights.png" class="img-narrow" />
 </div>
 
 $$
@@ -161,7 +161,7 @@ $$\hat Q(\boldsymbol \theta) = \frac{1}{N}\sum_{i=1}^N p(\boldsymbol \theta \| \
 
 I think this idea is much easier to understand graphically. Here's how our posterior for the $x + y$ example above looks; we can see that $N=1$ is equivalent to what we did earlier, and as $N$ increases it starts to look much more like the true posterior.
 
-<img src="/assets/2021-02-vi/mixture-vi.png" style="width:100%" />
+<img src="mixture-vi.png" style="width:100%" />
 
 One way to look at our first approximation above is that we used a representative $n$-dimensional point, with some uncertainty over its exact location – a fuzzy disc centred at $\mu$. The mixture approach generalises this by working with $N$ representative points, a bit like a sample, each of which shows up as a fuzzy disc at $\mu_i$. Enough discs can represent a more interesting distribution, and this is reflected in the ELBO: $N=100$ has about $3\times$ better model evidence than $N=1$.
 
@@ -169,7 +169,7 @@ One way to look at our first approximation above is that we used a representativ
 
 Unfortunately, extreme sparsity in the posterior still presents a challenge to most inference methods, including the one above. In these cases the result is, once again, very tight marginals around the MAP estimate, unless we use a very large number of components.
 
-<img src="/assets/2021-02-vi/failure.png" style="width:100%" />
+<img src="failure.png" style="width:100%" />
 
 One last trick is to take the idea of a set of samples repelling each other more literally. To work backwards, imagine we already had a good set of samples via MCMC. MCMC doesn't give us a distribution or a PDF, but with the samples we can estimate that underlying function (using a kernel density estimator, for example). Doing this will take sandpaper to the fine peaks and troughs of the true posterior, but that's fine if we're mainly interested in the marginal uncertainty of individual parameters.
 
@@ -189,6 +189,6 @@ $$\frac{1}{N} \sum_i^N \log(P(X,\theta_i)) - \log(\rho(\theta_i))$$
 
 In this modeller's testing so far, this seems to work quite well. Here's what the resulting samples look like on our motivating example; notice that at $N=1$ it handily reduces to MAP again.
 
-<img src="/assets/2021-02-vi/particle.png" style="width:100%" />
+<img src="particle.png" style="width:100%" />
 
 We start getting reasonable marginals at low $N$, and even on tricky high-dimensional examples (eg [this time series model](/2020/12/17/covid-gp.html)), we seem to either get the right marginals or overestimate them by a small factor – far better than underestimating them. The objective is also deterministic, which greatly improves fitting times. When all else fails, variational inference is a very useful trick to have up your sleeve.

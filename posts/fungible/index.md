@@ -11,7 +11,7 @@ title: The Fun in Non-Fungible
 It’s easy to mock NFTs (non-fungible tokens),[^1] or even to feel cynical about them. Cryptocurrency enthusiasts are spending enough cash to buy a rather nice house, and instead receiving a signed URL for a digital work of art, like this one.
 
 <div class="fill">
-  <img src="/assets/nft.png" />
+  <img src="nft.png" />
 </div>
 
 That pièce de résistance is called _[CryptoPunk 5822](https://www.larvalabs.com/cryptopunks/details/5822)_. As the name suggests, it is part of an exclusive collection: just [10,000 similar ones](https://www.larvalabs.com/cryptopunks) exist on the blockchain. Each CryptoPunk is randomly generated, and only 481 of them sport that [distinguished bandana](https://www.larvalabs.com/cryptopunks/search?query=%22Bandana%22), making this one unusually rare. On February 12<sup>th</sup>, _CryptoPunk 5822_ sold for 8,000 ETH, or about $24 million.

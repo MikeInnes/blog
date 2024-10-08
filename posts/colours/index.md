@@ -13,7 +13,7 @@ An astronomer might say that blue is the warmest colour, and red the coolest. Lu
 Most people have seen examples that fit the pattern, like embers or snow. But less obviously, we can also draw associations from language, and might gain a lot of our chromatic intuition that way. The idea of learning about sight through words may seem odd, but it could go a long way to explaining a paradox: why those born blind have a surprisingly good handle on colour.
 
 <div class="fill">
-  <img src="/assets/colours.png" />
+  <img src="colours.png" />
 </div>
 
 <div class="caption">

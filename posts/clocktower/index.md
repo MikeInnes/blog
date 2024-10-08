@@ -17,7 +17,7 @@ The [Clocktower IQ repo](https://github.com/MikeInnes/clocktower-iq) explains ho
 
 We assume that all players have some underlying skill level, which we call your "Clocktower IQ". If you plotted everyone's skill you'd get a bell curve like the following:
 
-<img src="/assets/2022-06-clocktower/normal.png" style="width:100%" />
+<img src="2022-06-clocktower/normal.png" style="width:100%" />
 
 By definition, about two thirds of people have skill levels between 85 and 115. If your clocktower IQ is larger than 130 you're allowed into Clocktower Mensa, and if it's higher than 145 you're a *bona fide* Clocktower Genius.
 
@@ -27,7 +27,7 @@ We don't directly know players' skill levels or how well they performed, but we 
 
 Here's how the (anonymised) results look for our current group, for players of 5 or more games, with 95% confidence intervals.
 
-<img src="/assets/2022-06-clocktower/iq.png" style="width:100%" />
+<img src="2022-06-clocktower/iq.png" style="width:100%" />
 
 What's really neat is the way this system can assign credit. Say a player won eight out of ten games. They must be pretty good, right? But if they won only when playing with really good players, and lost when playing with poor ones, that suggests they are not having much impact – they are not as good as they first looked. The model will recognise this, building up a consistent interpretation from the information available.
 

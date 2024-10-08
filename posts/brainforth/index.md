@@ -468,5 +468,5 @@ Of course, brainforth contributes nothing of value to any of these efforts.
 Join us next week, when we’ll be compiling Erlang to [Piet](https://esolangs.org/wiki/Piet), for fault-tolerant yet picturesque distributed systems!
 
 <div class="fill">
-  <img src="/assets/pollock.jpg" />
+  <img src="pollock.jpg" />
 </div>

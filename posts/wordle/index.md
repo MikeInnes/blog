@@ -11,7 +11,7 @@ tags: [infodump]
 
 [Wordle](https://www.powerlanguage.co.uk/wordle/) is a neat little word game, somewhere between mastermind and hangman. Try to guess the hidden five-letter word and it will tell you which letters are correct, and whether they are in the right position. You have six guesses to narrow down the right answer. Can we work out an automated strategy for this game?
 
-To start with we need a set of words to work with. Wordle actually uses two lists: a [shortlist of possible answers](/assets/wordle/wordle-answers.txt) (2,315 words) and a [longer list of valid guesses](/assets/wordle/wordle-guesses.txt) (10,657 words), making for 12,972 total. Implicitly those words are known to everyone who plays, because if you make a guess outside of the list, it'll be rejected.[^shortlist]
+To start with we need a set of words to work with. Wordle actually uses two lists: a [shortlist of possible answers](wordle-answers.txt) (2,315 words) and a [longer list of valid guesses](wordle-guesses.txt) (10,657 words), making for 12,972 total. Implicitly those words are known to everyone who plays, because if you make a guess outside of the list, it'll be rejected.[^shortlist]
 
 ## Resident Wordle Controller
 
@@ -20,7 +20,7 @@ To make good guesses, we need to know what it means for a guess to be good, whic
 For example:
 
 <div style="text-align:center">
-    <img src="/assets/wordle/alone.png" style="max-width:330px" />
+    <img src="alone.png" style="max-width:330px" />
 </div>
 
 That may not look like great progress, but there are only seven words that fit (like *nasty*, *manga* and *fancy*), so we're pretty close to getting the answer. The first guess, *alone*, left us with 40 possibilities, and *drain* has helped us narrow those down quite a bit – making it a useful guess.
@@ -68,14 +68,14 @@ Unsurprisingly, unusual or repeated letters tend to be unhelpful. Of the possibl
 On that note, it's important to point out that good guesses don't have to be valid answers. If you run the entropy strategy it can make almost random-looking choices.
 
 <div style="text-align:center">
-    <img src="/assets/wordle/tangy.png" style="max-width:330px" />
+    <img src="tangy.png" style="max-width:330px" />
 </div>
 
 *cyton* can't be the answer, but it's effective at splitting the remaining words, in this case leaving only two options (*tangy* and *tawny*). This trick makes all the difference, allowing us to solve any word in six guesses or less.
 
 Here's how it does with the rest of the words:
 
-<img src="/assets/wordle/plot.png" style="width:100%" />
+<img src="plot.png" style="width:100%" />
 
 We can get a score of 3.4 on average, with over 95% of words solved in four or fewer guesses. Only two words (*wafer* and *waver*) need the full six guesses.
 
