@@ -17,7 +17,7 @@ The [Clocktower IQ repo](https://github.com/MikeInnes/clocktower-iq) explains ho
 
 We assume that all players have some underlying skill level, which we call your "Clocktower IQ". If you plotted everyone's skill you'd get a bell curve like the following:
 
-<img src="2022-06-clocktower/normal.png" style="width:100%" />
+<img src="normal.png" style="width:100%" />
 
 By definition, about two thirds of people have skill levels between 85 and 115. If your clocktower IQ is larger than 130 you're allowed into Clocktower Mensa, and if it's higher than 145 you're a *bona fide* Clocktower Genius.
 
@@ -27,7 +27,7 @@ We don't directly know players' skill levels or how well they performed, but we 
 
 Here's how the (anonymised) results look for our current group, for players of 5 or more games, with 95% confidence intervals.
 
-<img src="2022-06-clocktower/iq.png" style="width:100%" />
+<img src="iq.png" style="width:100%" />
 
 What's really neat is the way this system can assign credit. Say a player won eight out of ten games. They must be pretty good, right? But if they won only when playing with really good players, and lost when playing with poor ones, that suggests they are not having much impact – they are not as good as they first looked. The model will recognise this, building up a consistent interpretation from the information available.
 
@@ -35,26 +35,26 @@ This is smart; not for nothing is a [similar system](https://www.microsoft.com/e
 
 ## Murder on the Dancefloor
 
-The skill of player $p$ is follows a normal distribution, $s_p \sim \mathcal{N}(0, 1)$. (Above I used $\mathcal{N}(100, 15)$, in analogy to IQ, but this is a cosmetic difference that we can fix up later.)
+The skill of player $[p] is follows a normal distribution, $[s_p \sim \mathcal{N}(0, 1)]. (Above I used $[\mathcal{N}(100, 15)], in analogy to IQ, but this is a cosmetic difference that we can fix up later.)
 
-The skill of a set of players $G$ is given by $s_G = \text{mean}(s_p : p \in G)$. Rather than modelling player-level performance, we can define the skill difference between teams G and E, $\delta s = s_G - s_E$, and skip to the team performance difference $\Delta \sim \mathcal{N}(\delta, \epsilon)$, where $\epsilon$ controls skill vs chance.[^teams] If $\Delta > 0$, good wins, otherwise evil wins. This amounts to a souped-up probit regression.
+The skill of a set of players $[G] is given by $[s_G = \text{mean}(s_p : p \in G)]. Rather than modelling player-level performance, we can define the skill difference between teams G and E, $[\delta s = s_G - s_E], and skip to the team performance difference $[\Delta \sim \mathcal{N}(\delta, \epsilon)], where $[\epsilon] controls skill vs chance.[^teams] If $[\Delta > 0], good wins, otherwise evil wins. This amounts to a souped-up probit regression.
 
-[^teams]: Strictly speaking this is a little different to per-player performance, in that larger teams don't perform more consistently. We can fix this by multiplying $\epsilon$ by $\sqrt{1/m + 1/n}$, where $m$ and $n$ are the team sizes.
+[^teams]: Strictly speaking this is a little different to per-player performance, in that larger teams don't perform more consistently. We can fix this by multiplying $[\epsilon] by $[\sqrt{1/m + 1/n}], where $[m] and $[n] are the team sizes.
 
 That's pretty much it. We can investigate whether the game is skillful by comparing model evidence: the approach above vs a simple coin-flip model. The skill model is preferred by a hair, with a 52% chance of being better based on the data we have. Not overwhemingly convincing, but given that the model has quite a few parameters (which the model evidence metric punishes), it says something that it's not considered unlikely.
 
 Assuming skill matters, on average the model predicts that the better team will win 55% of the time. That puts a rough lower bound on the edge the better team can expect to have, if it has one at all.
 
-One thing we can rule out with some confidence is that the better team always wins, ie $\epsilon = 0$ and $\Delta = \delta$. This is technically possible, but about 100 times less likely than either the performance-based or random models.
+One thing we can rule out with some confidence is that the better team always wins, ie $[\epsilon = 0] and $[\Delta = \delta]. This is technically possible, but about 100 times less likely than either the performance-based or random models.
 
 The high parameter:data ratio of the model means that maximum likelihood methods would certainly overfit, but in a Bayesian setting our posterior simply ends up being similar to the prior, with appropriately wide uncertainties (as reflected in its inconclusive results). We can reduce the number of parameters by filtering out players of very few games, either by treating them as a collective "other" player or by fixing their team contributions to 0. Interestingly, neither option improves the model evidence, so for now this seems unnecessary.
 
-Is the game biased towards either side? We can test this by adding a bias term, $\Delta = \mathcal{N}(\delta + \beta, \epsilon)$ where $\beta \sim \mathcal{N}(0,1)$. Not surprisingly, given that evil won two-thirds of our games, the evidence says there's a 60% chance of a bias. I suspect evil may have an advantage in novice games, if chance alone didn't skew this result.
+Is the game biased towards either side? We can test this by adding a bias term, $[\Delta = \mathcal{N}(\delta + \beta, \epsilon)] where $[\beta \sim \mathcal{N}(0,1)]. Not surprisingly, given that evil won two-thirds of our games, the evidence says there's a 60% chance of a bias. I suspect evil may have an advantage in novice games, if chance alone didn't skew this result.
 
 I've assumed that players have the same skill whether playing good or evil. Of course, some might be better logicians and worse liars, or vice versa. It would be interesting to model separate good/evil team skills (presumably with some correlation between them), but it's doubtful that the current dataset could meaningfully support this. The same applies to changes in player skill over time.
 
 Character roles are also excluded, for now. Aside from data-hungriness, it's significantly harder to record and model roles in the first place, especially when players can switch during a game.
 
-Finally, what is the impact of the storyteller? It's easy to apply per-person biases to test whether moderators play favourites. More interesting is to check whether they are effectively balancing teams of disparate skill. If so, a game with a novice and expert team will nonetheless be quite uncertain; the storyteller has increased $\epsilon$. Unfortunately it's quite difficult to implement this variation in Infer.net, the tool I'm using for inference, so the idea will have to wait.
+Finally, what is the impact of the storyteller? It's easy to apply per-person biases to test whether moderators play favourites. More interesting is to check whether they are effectively balancing teams of disparate skill. If so, a game with a novice and expert team will nonetheless be quite uncertain; the storyteller has increased $[\epsilon]. Unfortunately it's quite difficult to implement this variation in Infer.net, the tool I'm using for inference, so the idea will have to wait.
 
 Early days. Even though it's early to draw conclusions, I'm hoping that releasing the tool will encourage others to play with it and record more data. [Enjoy.](https://github.com/MikeInnes/clocktower-iq)
