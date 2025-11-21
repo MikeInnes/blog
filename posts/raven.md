@@ -8,14 +8,14 @@ I've been working on a new programming language, called Raven. It's still experi
 
 Raven is small but smart. It should feel tight and intuitive, lightweight enough for interactive notebooks and scripting, yet capable and adaptable for big projects with hard constraints. It's difficult to summarise an entire language, so here's a small snippet to warm up with:
 
-```rust
+```raven
 fn fib(n) { fib(n-1) + fib(n-2) }
 fn fib(1) { 1 }
 fn fib(0) { 0 }
 
 fn fibSequence(n) {
   xs = []
-  for i in range(1, n) {
+  for i = range(1, n) {
     append(&xs, fib(i))
   }
   return xs
@@ -28,13 +28,13 @@ show fibSequence(10)
 
 If you save this in a file like `test.rv`, compile it and run it you'll get the output:
 
-```rust
+```raven
 fibSequence(10) = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
 ```
 
 Despite the familiar C-ish look, Raven is primarily a functional language, and a Lisp. It comes with [fast multi-dispatch](https://mikeinnes.io/sponsor/posts/dispatch/), as in the overloaded `fib` function. Basic types are defined as [Haskell](https://www.haskell.org/)-y ADTs which you can pattern match on, as in:
 
-```rust
+```raven
 bundle Optional[T] { Some(x: T), Nil() }
 ```
 
@@ -52,7 +52,7 @@ There's a programming aphorism that a language must be at least ten times better
 
 But I also don't want people to be limited as prototype evolves into practice, which means having excellent tools for deployment, performance tuning and managing large codebases. Like [TypeScript](https://www.typescriptlang.org/), Raven can turn its analysis into great tooling, and many errors can be found ahead of time. But rather than building on untyped JavaScript, Raven was designed for flow-based inference, making it easier to get precise results. As one example, Raven discourages `if` statements in favour of `match` clauses which ensure all cases are covered (and [narrow types](http://mikeinnes.io/sponsor/posts/narrowing/) more effectively too). As another, we have no trouble inferring recursive functions, like one that builds a linked list out of tuples:
 
-```rust
+```raven
 fn foo(n: Int) {
   if n == 0 {
     return nil
@@ -68,7 +68,7 @@ No system I'm aware of can infer code like this, without an explicitly-defined r
 
 Underneath, there isn't really such a thing as a user-defined "type" at all. In a definition like `bundle Complex(re, im)`, the `bundle` keyword is really a macro that generates constructors like `fn Complex(re, im) { pack(tag"Complex", re, im) }` (alongside hooks for printing and pattern matching). `pack` is Raven's primitive tuple type and `tag`s are symbols used to distinguish different tuples. Just as in Smalltalk [everything is an object](https://courses.cs.washington.edu/courses/cse505/99au/oo/smalltalk-concepts.html), or in Mathematica [everything is an expression](https://reference.wolfram.com/language/tutorial/Expressions.html), in Raven everything is a `pack` – [even basic numbers](http://mikeinnes.io/sponsor/posts/bits/). User-defined values are just as good as built-in ones, because the compiler infers structure, noticing when the tag is constant and storing only the contents on the stack.
 
-```rust
+```raven
 raven> showPack Complex(1, 2)
 Complex(1, 2) = pack(tag"common.Complex", 1, 2)
 

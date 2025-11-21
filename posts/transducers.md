@@ -78,7 +78,7 @@ The elegance of transducers is somewhat eroded as we try to make them more gener
 
 Consider the following notation for `mapping` and `filtering`, inspired by [F#’s list comprehensions](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/sequences). I’m using a hypothetical C/Koka-like syntax here but all my examples could be converted to simple Clojure equivalents (`loop`/`recur` and explicit passing of variables, `for`, etc).
 
-```rust
+```raven
 fn mapping(f, xs) {
   for x in xs {
     yield(f(x))
@@ -100,7 +100,7 @@ The key idea is to make this code run via _effect handlers_ (implemented in F#, 
 
 At the simplest, we can just create an empty array and append to it each time a value is `yield`ed:
 
-```rust
+```raven
 ys = []
 handle {
   mapping(f, xs)
@@ -115,7 +115,7 @@ return ys
 
 Instead of building a list, we can do a map-reduce without any intermediate collection being constructed.
 
-```rust
+```raven
 sum = 0
 handle {
   mapping(f, xs)
@@ -128,7 +128,7 @@ return sum
 
 This can compile down to the tight loop we want for simple data structures.[^3] But what’s going to be really mind-bending is how straightforwardly we can turn our loop into a lazy sequence.
 
-```rust
+```raven
 ys = handle {
   mapping(f, xs)
   nil
@@ -143,7 +143,7 @@ What’s happening here is that `yield` doesn’t call `resume`, so the loop get
 
 With this in mind, we can blend Clojure’s `into` and F#’s `seq` into one list comprehension construct which picks the appropriate `yield` handler for the kind of sequence we are building.
 
-```rust
+```raven
 fn map(f, xs) {
   into empty(xs) {
     for x in xs {
@@ -157,7 +157,7 @@ This `map` can behave appropriately, and generate efficient code, whether `xs` i
 
 As F# has shown, this way of defining sequence transformations is really expressive. If we want to cancel we can just break out of the loop (or the loop/recur equivalent).
 
-```rust
+```raven
 // Take while
 for x in xs {
   if f(x) {
@@ -170,7 +170,7 @@ for x in xs {
 
 If we need state, a local variable is enough, since the loop has its own scope.
 
-```rust
+```raven
 // Dedupe
 last = nil
 for x in xs {
@@ -183,7 +183,7 @@ for x in xs {
 
 Concatenating sequences is easy, because we can happily have multiple loops, and `interleave` is easy because we can put `yield` wherever we want. We can even use nested loops, and I’d argue that the intent is clearer in these than even the simplest transducer implementations. They strike close to the essence of the transformation, without any incidental complexity.
 
-```rust
+```raven
 // Concat
 for x in xs { yield(x) }
 for y in ys { yield(y) }
@@ -202,7 +202,7 @@ for x in xs {
 
 We can even imagine supporting multiple output sequences, so long as there’s some way of identifying them, for example to partition a channel into matching and non-matching events.
 
-```rust
+```raven
 // Split-with
 into empty(xs) -> (trues, falses) {
   for x in xs {
