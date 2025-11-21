@@ -158,7 +158,7 @@ This `map` can behave appropriately, and generate efficient code, whether `xs` i
 As F# has shown, this way of defining sequence transformations is really expressive. If we want to cancel we can just break out of the loop (or the loop/recur equivalent).
 
 ```raven
-// Take while
+# Take while
 for x in xs {
   if f(x) {
     yield(x)
@@ -171,7 +171,7 @@ for x in xs {
 If we need state, a local variable is enough, since the loop has its own scope.
 
 ```raven
-// Dedupe
+# Dedupe
 last = nil
 for x in xs {
   if x != last {
@@ -184,15 +184,15 @@ for x in xs {
 Concatenating sequences is easy, because we can happily have multiple loops, and `interleave` is easy because we can put `yield` wherever we want. We can even use nested loops, and I’d argue that the intent is clearer in these than even the simplest transducer implementations. They strike close to the essence of the transformation, without any incidental complexity.
 
 ```raven
-// Concat
+# Concat
 for x in xs { yield(x) }
 for y in ys { yield(y) }
-// Interleave
+# Interleave
 for (x, y) in zip(xs, ys) {
   yield(x)
   yield(y)
 }
-// Cartesian Product
+# Cartesian Product
 for x in xs {
   for y in ys {
     yield((x, y))
@@ -203,7 +203,7 @@ for x in xs {
 We can even imagine supporting multiple output sequences, so long as there’s some way of identifying them, for example to partition a channel into matching and non-matching events.
 
 ```raven
-// Split-with
+# Split-with
 into empty(xs) -> (trues, falses) {
   for x in xs {
     if f(x) {
