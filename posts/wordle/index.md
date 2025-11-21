@@ -25,11 +25,11 @@ For example:
 
 That may not look like great progress, but there are only seven words that fit (like *nasty*, *manga* and *fancy*), so we're pretty close to getting the answer. The first guess, *alone*, left us with 40 possibilities, and *drain* has helped us narrow those down quite a bit – making it a useful guess.
 
-We can make this a bit more formal using the concept of entropy, from information theory. If we have a list of $[N] words, each of which has probability $[p = 1/N] of being correct, the entropy is
+We can make this a bit more formal using the concept of entropy, from information theory. If we have a list of $N$ words, each of which has probability $p = 1/N$ of being correct, the entropy is
 
 $$- \sum_N p \log p = \log N$$
 
-. A shortened list has more information about the correct answer, so by guessing "drain" above we gained $[\log 40 - \log 7 \approx 2.5] bits of information. (If this seems like nonsense, I'll give a more intuitive explanation below.)
+. A shortened list has more information about the correct answer, so by guessing "drain" above we gained $\log 40 - \log 7 \approx 2.5$ bits of information. (If this seems like nonsense, I'll give a more intuitive explanation below.)
 
 Sharp-eyed readers will spot an issue: to work this out depends on making the guess and getting feedback from Wordle. But once we've made the guess, we can't retract it and try out something else – that would be cheating. We need to evaluate the guess before we use it, not after.
 
