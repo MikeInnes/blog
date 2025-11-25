@@ -7,7 +7,7 @@ notebook: true
 
 Welcome! [Raven](/posts/raven/) is a small but smart programming language that compiles to WebAssembly. It combines a simple, functional data model, powerful type inference, and flexible syntax. You can learn more from [the GitHub page](https://github.com/Unkindnesses/raven), including how to get set up locally. (But note that the code is currently [sponsors-only](https://github.com/sponsors/MikeInnes).)
 
-Here's "hello world" (or our version of it). Press the play button to run code, or try editing the text! (But note that the compiler is not yet that robust to errors – if things get funky, just refresh the page.)
+Here's "hello world" (or our version of it). Press the play button to run code, or try editing the text! (The compiler is not yet that robust to errors, so if things get funky, just refresh the page.)
 
 ```raven
 println("Cacaw, World!")
@@ -104,7 +104,9 @@ show b
 You'll notice the syntax `[x, y] = list`, which is a shorthand for `x = list[1], y = list[2]`. This trick is _pattern matching_, and it works on most things.
 
 ```raven
-x = Complex(3, 4) * Complex(2, -1)
+a = Complex(3, 4)
+b = Complex(2, -1)
+x = a * b
 Complex(re, im) = x
 show [re, im]
 ```
@@ -199,7 +201,7 @@ Literally everything in Raven is a `pack` – it's our version of "everything is
 ```raven
 showPack Complex(1, 2)
 showPack [1, 2, 3]
-show pack(1, 2, 3)
+pack(1, 2, 3)
 ```
 
 How about primitive types?
@@ -240,7 +242,7 @@ println(`hello,\n world`)
 Use regexes like so:
 
 ```raven
-contains?("1, 2, 3", r`\d`)
+show contains?("1, 2, 3", r`\d`)
 collect(matches("1, 2, 3", r`\d`))
 ```
 
