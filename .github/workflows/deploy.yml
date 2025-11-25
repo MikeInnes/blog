@@ -1,0 +1,18 @@
+name: Deploy to Cloudflare
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Build
+        run: |
+          curl -sS -X POST \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+            -H 'Content-Type: application/json' \
+            "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CF_ACCOUNT_ID }}/builds/triggers/${{ secrets.CF_TRIGGER }}/builds" \
+            -d '{"branch": "master"}'
