@@ -144,7 +144,7 @@ fn fib(n) { fib(n-2) + fib(n-1) }
 fn fib(1) { 1 }
 fn fib(0) { 0 }
 
-map(fib, range(1, 10))
+map(range(1, 10), fib)
 ```
 
 This lets us easily hook in to existing functions like `+`. In this case, we have to use `@extend` to overload the existing `+` in the standard library (rather than defining a new `+` in the main module).
