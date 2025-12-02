@@ -1,6 +1,6 @@
 ---
 date: '2025-12-01'
-tags: [infodump]
+tags: [raven]
 title: Advent of Code
 notebook: true
 ---

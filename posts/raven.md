@@ -1,6 +1,6 @@
 ---
 date: '2025-04-20'
-tags: [languages, raven]
+tags: [raven]
 title: A Language for Sorcery
 ---
 
