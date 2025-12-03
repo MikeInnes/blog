@@ -11,7 +11,16 @@ Raven's standard library is, uh, reasonably sparse at the moment. So the solutio
 
 ## Day One
 
-[The puzzle](https://adventofcode.com/2025/day/1). We'll start with the demo input.
+Preamble: We'll use this `load` function later, to get inputs for the final answer. You should be able to run each day's code seperately, but all of them need this function.
+
+```raven
+fn load(data) {
+  url = concat("/posts/advent-2025/input/", data)
+  String(await(await(js.fetch(url)).text()))
+}
+```
+
+[The first puzzle](https://adventofcode.com/2025/day/1). We'll start with the demo input.
 
 ```raven
 input = """
@@ -87,11 +96,6 @@ count(positions(input), zero?)
 `6` is the answer to the demo version of the puzzle. Now we just run the whole process on the full version of the data.
 
 ```raven
-fn load(data) {
-  url = concat("/posts/advent-2025/input/", data)
-  String(await(await(js.fetch(url)).text()))
-}
-
 fn parseInput(s) {
   replace(&s, r`L`, "-")
   replace(&s, r`R`, "")
@@ -219,6 +223,111 @@ Because we've updated `invalid?`, the rest of the `answer` code is identical –
 
 ```raven
 answer(load("02.txt"))
+```
+
+## Day Three
+
+[The puzzle](https://adventofcode.com/2025/day/3). We need to find the largest two-digit number hidden in a sequence.
+
+```raven
+input = """
+  987654321111111
+  811111111111119
+  234234234234278
+  818181911112111
+  """
+```
+
+We don't need to brute force this. The first digit of the answer will always be the largest one on the line (excluding the final digit, which we can't start with). The second digit will be the largest one that follows.
+
+We need a way to slice arrays, so we can look at parts of the sequence separately.
+
+```raven
+fn slice(xs, start, end) {
+  for i = range(start, end) { xs[i] }
+}
+
+slice([6, 8, 7, 9, 10], 2, 4)
+```
+
+Then we write an `argmax` function to get the index of the biggest digit in a list.
+
+```raven
+fn argmax(xs) {
+  i = 1
+  for j = range(2, length(xs)) {
+    if xs[j] > xs[i] { i = j }
+  }
+  return i
+}
+
+xs = [1, 2, 9, 4, 5]
+show argmax(xs)
+show xs[3]
+```
+
+Now we can get the `joltage` of a digit sequence, by finding the max among all the digits (save the last), and then the max that follows.
+
+```raven
+fn joltage(digits) {
+  a = argmax(slice(digits, 1, length(digits)-1))
+  b = argmax(slice(digits, a+1, length(digits)))
+  return 10*digits[a] + digits[a+b]
+}
+
+joltage([8,1,8,1,8,1,9,1,1,1,1,2,1,1,1])
+```
+
+Now it's just a case of looping over the lines and adding up the joltage (with our good friend `parseInt`).
+
+```raven
+fn parseInt(s) { Int64(js.parseInt(s)) }
+
+total = 0
+for line = js(input).split("\n") {
+  total = total + joltage(map(line, parseInt))
+}
+total
+```
+
+Now the real thing.
+
+```raven
+input = load("03.txt")
+input = js(input).split("\n").filter(js.Boolean)
+total = 0
+for line = input {
+  total = total + joltage(map(line, parseInt))
+}
+total
+```
+
+**Part Two** extends takes us from finding a two-digit number to a twelve-digit one. It's easiest to rewrite `joltage` to work with `N` digits. The logic is identical: find the largest digit in the list (making sure there's enough left over), then use rest of the list as candidates for the next digit.
+
+```raven
+fn joltage(digits, n) {
+  j = 0
+  while n > 0 {
+    i = argmax(slice(digits, 1, length(digits) - (n - 1)))
+    j = (10*j) + digits[i]
+    digits = slice(digits, i+1, length(digits))
+    n = n - 1
+  }
+  return j
+}
+
+show joltage([8,1,8,1,8,1,9,1,1,1,1,2,1,1,1], 2)
+show joltage([8,1,8,1,8,1,9,1,1,1,1,2,1,1,1], 12)
+```
+
+And the real thing:
+
+```raven
+total = 0
+for line = input {
+  total = total + joltage(map(line, parseInt), 12)
+}
+show total
 ```
 
 That's all for now!
