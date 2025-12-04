@@ -9,6 +9,8 @@ I'm taking a crack at solving [Advent of Code](https://adventofcode.com/) using 
 
 Raven's standard library is, uh, reasonably sparse at the moment. So the solutions will tend to rely on JavaScript interop, or involve rewriting basic functionality, and it's not all that representative of how I'd like Raven to look. But it might be fun to see some of the nuts and bolts.
 
+Go straight to [Day One](#day-one), [Day Two](#day-two), [Day Three](#day-three), [Day Four](#day-four).
+
 ## Day One
 
 Preamble: We'll use this `load` function later, to get inputs for the final answer. You should be able to run each day's code seperately, but all of them need this function.
@@ -108,7 +110,7 @@ count(positions(input), zero?)
 
 (`.filter(js.Boolean)` removes empty lines from the file – an empty string casts to boolean `false` in JS.)
 
-Ok, pretty straightforward! **Part Two** adds a new wrinkle: we have to count the number of times the dial crosses zero, rather than just how many times it lands there. We'll load the demo data again for this.
+Ok, pretty straightforward! **Part two** adds a new wrinkle: we have to count the number of times the dial crosses zero, rather than just how many times it lands there. We'll load the demo data again for this.
 
 ```raven
 input = parseInput("L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82")
@@ -205,7 +207,7 @@ fn answer(input) {
 answer(load("02.txt"))
 ```
 
-**Part Two** extends the definition of "invalid" to cover any number made up of repeating sequences of digits, like `123123123`. The easiest way to check for a more complex pattern like this is with a regex. In this case:
+**Part two** extends the definition of "invalid" to cover any number made up of repeating sequences of digits, like `123123123`. The easiest way to check for a more complex pattern like this is with a regex. In this case:
 
 ```raven
 fn invalid?(id) {
@@ -302,7 +304,7 @@ for line = input {
 total
 ```
 
-**Part Two** extends takes us from finding a two-digit number to a twelve-digit one. It's easiest to rewrite `joltage` to work with `N` digits. The logic is identical: find the largest digit in the list (making sure there's enough left over), then use rest of the list as candidates for the next digit.
+**Part two** extends takes us from finding a two-digit number to a twelve-digit one. It's easiest to rewrite `joltage` to work with `N` digits. The logic is identical: find the largest digit in the list (making sure there's enough left over), then use rest of the list as candidates for the next digit.
 
 ```raven
 fn joltage(digits, n) {
