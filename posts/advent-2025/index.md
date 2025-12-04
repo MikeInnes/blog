@@ -330,4 +330,167 @@ for line = input {
 show total
 ```
 
+## Day Four
+
+[The puzzle](https://adventofcode.com/2025/day/4). We need to count the rolls of paper (`@`) which are surrounded by less than four other rolls in a grid.
+
+```raven
+input = """
+  ..@@.@@@@.
+  @@@.@.@.@@
+  @@@@@.@.@@
+  @.@@@@..@.
+  @@.@@@@.@@
+  .@@@@@@@.@
+  .@.@.@.@@@
+  @.@@@.@@@@
+  .@@@@@@@@.
+  @.@.@@@.@.
+  """
+
+fn lines(s: String) {
+  ls = js(s).split("\n").filter(js.Boolean)
+  map(ls, String)
+}
+
+input = lines(input)
+```
+
+Here's code for a 2D slice.
+
+```raven
+fn slice(xs, is, js) {
+  for i = is {
+    for j = js { xs[i][j] }
+  }
+}
+
+slice(input, range(2, 4), range(5, 7))
+```
+
+Which lets us get the box around a given cell.
+
+```raven
+fn max(x, y) { if x >= y { x } else { y } }
+fn min(x, y) { if x <= y { x } else { y } }
+
+fn neighbours(i, N) { range(max(1, i-1), min(N, i+1)) }
+
+N = length(input)
+M = length(input[1])
+box = slice(input, neighbours(2, N), neighbours(2, M))
+```
+
+Then we can count the amount of paper in the neighbourhood.
+
+```raven
+fn flatMap(xss, f) {
+  ys = []
+  for xs = xss {
+    for x = xs { append(&ys, f(x)) }
+  }
+  return ys
+}
+
+fn flatMap(xss) { flatMap(xss, identity) }
+
+fn count(xs, f) {
+  c = 0
+  for x = xs {
+    if f(x) { c = c + 1 }
+  }
+  return c
+}
+
+fn isPaper(ch: Char) { ch == c"@" }
+
+count(flatMap(box), isPaper)-1
+```
+
+We subtract `1` so that we're only counting the neighbours, not the paper in the middle of the box. Now we can loop over the coordinates in the grid:
+
+```raven
+fn accessible(input) {
+  N = length(input)
+  M = length(input[1])
+  total = 0
+  for i = range(1, N) {
+    for j = range(1, M) {
+      if not(isPaper(input[i][j])) { continue }
+      box = slice(input, neighbours(i, N), neighbours(j, M))
+      if (count(flatMap(box), isPaper)-1) < 4 { total = total + 1 }
+    }
+  }
+  return total
+}
+
+accessible(input)
+```
+
+The real deal:
+
+```raven
+accessible(lines(load("04.txt")))
+```
+
+**Part two** has us removing rolls of paper, which makes more rolls accessible, and so we repeat until we can go no further. The code to do that is structurally similar to `accessible`, but we build the output as we go.
+
+```raven
+@extend, fn js(ch: Char) { js(string(ch)) } # A conversion we need
+
+fn remove(input) {
+  N = length(input)
+  M = length(input[1])
+  output = []
+  total = 0
+  for i = range(1, N) {
+    row = []
+    for j = range(1, M) {
+      box = slice(input, neighbours(i, N), neighbours(j, M))
+      if isPaper(input[i][j]) {
+        if count(flatMap(box), isPaper) < 5 {
+          total = total + 1
+        } else {
+          append(&row, c"@")
+          continue
+        }
+      }
+      append(&row, c".")
+    }
+    append(&output, String(js(row).join("")))
+  }
+  return [output, total]
+}
+
+[output, total] = remove(input)
+println(js(output).join("\n"))
+total
+```
+
+We can `remove` in a loop, until there's nothing to remove.
+
+```raven
+fn removeAll(input) {
+  total = 0
+  while true {
+    [input, removed] = remove(input)
+    if removed == 0 { break }
+    total = total + removed
+  }
+  return [input, total]
+}
+
+[output, total] = removeAll(input)
+println(js(output).join("\n"))
+total
+```
+
+And the real deal:
+
+```raven
+removeAll(lines(load("04.txt")))[2]
+```
+
+This would all be a lot nicer if we had a matrix type! Another one for the to-do list.
+
 That's all for now!
