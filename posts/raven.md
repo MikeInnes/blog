@@ -4,7 +4,9 @@ tags: [raven]
 title: A Language for Sorcery
 ---
 
-I've been working on a new programming language, called Raven. It's still experimental, and not ready for serious (or even silly) users. But curious language nerds such as yourself may find it interesting. If you want to follow along then [sponsor me](https://github.com/sponsors/MikeInnes), and I'll give you early access to the repo along with regular behind-the-scenes updates.
+I've been working on a new programming language, called [Raven](https://github.com/Unkindnesses/raven). It's still experimental, and not ready for serious (or even silly) users. But curious language nerds such as yourself may find it interesting. If you want to follow along then [sponsor me](https://github.com/sponsors/MikeInnes), and I'll give you early access to the repo along with regular behind-the-scenes updates.
+
+*Update: Raven's [repo](https://github.com/Unkindnesses/raven) is now open to everyone!*
 
 Raven is small but smart. It should feel tight and intuitive, lightweight enough for interactive notebooks and scripting, yet capable and adaptable for big projects with hard constraints. It's difficult to summarise an entire language, so here's a small snippet to warm up with:
 

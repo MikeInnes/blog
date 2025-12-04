@@ -5,7 +5,7 @@ title: A Tour of Raven
 notebook: true
 ---
 
-Welcome! [Raven](/posts/raven/) is a small but smart programming language that compiles to WebAssembly. It combines a simple, functional data model, powerful type inference, and flexible syntax. You can learn more from [the GitHub page](https://github.com/Unkindnesses/raven), including how to get set up locally. (But note that the code is currently [sponsors-only](https://github.com/sponsors/MikeInnes).)
+Welcome! [Raven](https://github.com/Unkindnesses/raven) is a small but smart programming language that compiles to WebAssembly. It combines a simple, functional data model, powerful type inference, and flexible syntax. You can learn more from [the GitHub page](https://github.com/Unkindnesses/raven), including how to get set up locally. (But note that the code is currently [sponsors-only](https://github.com/sponsors/MikeInnes).)
 
 Here's "hello world" (or our version of it). Press the play button to run code, or try editing the text! (The compiler is not yet that robust to errors, so if things get funky, just refresh the page.)
 
