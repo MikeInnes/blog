@@ -9,7 +9,7 @@ I'm taking a crack at solving [Advent of Code](https://adventofcode.com/) using 
 
 Raven's standard library is, uh, reasonably sparse at the moment. So the solutions will tend to rely on JavaScript interop, or involve rewriting basic functionality, and it's not all that representative of how I'd like Raven to look. But it might be fun to see some of the nuts and bolts.
 
-Go straight to [Day One](#day-one), [Day Two](#day-two), [Day Three](#day-three), [Day Four](#day-four).
+Go straight to [Day One](#day-one), [Day Two](#day-two), [Day Three](#day-three), [Day Four](#day-four), [Day Five](#day-five).
 
 ## Day One
 
@@ -404,9 +404,9 @@ fn count(xs, f) {
   return c
 }
 
-fn isPaper(ch: Char) { ch == c"@" }
+fn paper?(ch: Char) { ch == c"@" }
 
-count(flatMap(box), isPaper)-1
+count(flatMap(box), paper?)-1
 ```
 
 We subtract `1` so that we're only counting the neighbours, not the paper in the middle of the box. Now we can loop over the coordinates in the grid:
@@ -418,9 +418,9 @@ fn accessible(input) {
   total = 0
   for i = range(1, N) {
     for j = range(1, M) {
-      if not(isPaper(input[i][j])) { continue }
+      if not(paper?(input[i][j])) { continue }
       box = slice(input, neighbours(i, N), neighbours(j, M))
-      if (count(flatMap(box), isPaper)-1) < 4 { total = total + 1 }
+      if (count(flatMap(box), paper?)-1) < 4 { total = total + 1 }
     }
   }
   return total
@@ -449,8 +449,8 @@ fn remove(input) {
     row = []
     for j = range(1, M) {
       box = slice(input, neighbours(i, N), neighbours(j, M))
-      if isPaper(input[i][j]) {
-        if count(flatMap(box), isPaper) < 5 {
+      if paper?(input[i][j]) {
+        if count(flatMap(box), paper?) < 5 {
           total = total + 1
         } else {
           append(&row, c"@")
@@ -493,6 +493,148 @@ And the real deal:
 removeAll(lines(load("04.txt")))[2]
 ```
 
-This would all be a lot nicer if we had a matrix type! Another one for the to-do list.
+This would all be a lot nicer if we had a matrix type!
+
+## Day Five
+
+[The puzzle](https://adventofcode.com/2025/day/5). Given a set of ranges (the first list), we need to check which IDs (the second list) are included.
+
+```raven
+input = """
+  3-5
+  10-14
+  16-20
+  12-18
+
+  1
+  5
+  8
+  11
+  17
+  32
+  """
+```
+
+```raven
+fn parseInt(s) { Int64(js.parseInt(s)) }
+
+fn split(string, by) {
+  map(js(string).split(by).filter(js.Boolean), String)
+}
+
+fn parse(input) {
+  [ranges, ids] = split(input, "\n\n")
+  ids = map(split(ids, "\n"), parseInt)
+  ranges = (for line = split(ranges, "\n") {
+    map(split(line, "-"), parseInt)
+  })
+  return [ranges, ids]
+}
+
+[ranges, ids] = parse(input)
+show ranges
+show ids
+```
+
+There are cleverer methods, but for now it's entirely reasonable to check every ID against every range, which gets us our answer.
+
+```raven
+fn fresh?(ranges, id) {
+  for range = ranges {
+    [a, b] = range
+    if (a <= id) && (id <= b) { return true }
+  }
+  return false
+}
+
+fn countFresh(ranges, ids) {
+  total = 0
+  for id = ids {
+    if fresh?(ranges, id) { total = total + 1 }
+  }
+  return total
+}
+
+show countFresh(parse(input)...)
+show countFresh(parse(load("05.txt"))...)
+```
+
+**Part two** makes things trickier – we now have to count how many valid IDs there are in total, and brute force is no longer an option. (There are up to 562,817,005,870,729 valid IDs in my input file, which would take a week to check even if each ID only takes a nanosecond.)
+
+So we instead need to add up the length of all the ranges. That should be simple, but the problem is double counting: in our original input, ranges `10-14` (length 5) and `12-18` (length 7) only contribute 9 total IDs (not 12), because IDs `12`, `13` and `14` are covered by both.
+
+We can address this by filtering out all the ranges that overlap the one we're interested in.
+
+```raven
+fn disjoint?([a1, a2], [b1, b2]) {
+  (b2 < a1) || (b1 > a2)
+}
+
+fn overlapping(rs, range) {
+  no = []
+  yes = [range]
+  for r = rs {
+    if disjoint?(r, range) {
+      append(&no, r)
+    } else {
+      append(&yes, r)
+    }
+  }
+  return [no, yes]
+}
+
+[no, yes] = overlapping([[3, 5], [10, 14], [16, 20]], [12, 18])
+show no
+show yes
+```
+
+Then we merge the overlapping ranges into one.
+
+```raven
+fn merge(rs) {
+  [a, b] = rs[1]
+  for r = rs {
+    if r[1] < a { a = r[1] }
+    if r[2] > b { b = r[2] }
+  }
+  return [a, b]
+}
+
+merge(yes)
+```
+
+We can use this to consolidate all ranges in the set. We are essentially just transfering the ranges from one list to another, but we filter out overlapping ranges from the output list and merge as we go.
+
+```raven
+fn consolidate(ranges) {
+  rs = []
+  for r = ranges {
+    [rs, os] = overlapping(rs, r)
+    append(&rs, merge(os))
+  }
+  return rs
+}
+
+consolidate(parse(input)[1])
+```
+
+That significantly simplifies our original set of ranges, and finally we can count them up!
+
+```raven
+fn count(ranges) {
+  ranges = consolidate(ranges)
+  total = 0
+  for r = ranges {
+    [a, b] = r
+    total = total + (b - a) + 1
+  }
+  return total
+}
+
+show count(parse(input)[1])
+show count(parse(load("05.txt"))[1])
+```
+
+Raven's lack of built-in data structures, or library functions like `sort`, is starting to feel limiting – though that perhaps inspires more creative solutions, too. We'll see how much further we can get.
 
 That's all for now!
