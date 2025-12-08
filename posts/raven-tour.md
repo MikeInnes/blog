@@ -5,7 +5,7 @@ title: A Tour of Raven
 notebook: true
 ---
 
-Welcome! [Raven](https://github.com/Unkindnesses/raven) is a small but smart programming language that compiles to WebAssembly. It combines a simple, functional data model, powerful type inference, and flexible syntax. You can learn more from [the GitHub page](https://github.com/Unkindnesses/raven), including how to get set up locally. (But note that the code is currently [sponsors-only](https://github.com/sponsors/MikeInnes).)
+Welcome! [Raven](https://github.com/Unkindnesses/raven) is a small but smart programming language that compiles to WebAssembly. It combines a simple, functional data model, powerful type inference, and flexible syntax. You can learn more from [the GitHub page](https://github.com/Unkindnesses/raven), including how to get set up locally.
 
 Here's "hello world" (or our version of it). Press the play button to run code, or try editing the text! (The compiler is not yet that robust to errors, so if things get funky, just refresh the page.)
 
@@ -265,4 +265,4 @@ show String(js("foo").toUpperCase())
 show Float64(js.Math.sqrt(10))
 ```
 
-That's all for now! For more background check out the [announcement post](/posts/raven/), or [sponsor me](https://github.com/sponsors/MikeInnes) and you can check out the [repo](https://github.com/Unkindnesses/raven).
+That's all for now! For more background check out the [repo](https://github.com/Unkindnesses/raven).
