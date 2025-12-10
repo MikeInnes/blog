@@ -9,7 +9,7 @@ I'm taking a crack at solving [Advent of Code](https://adventofcode.com/) using 
 
 Raven's standard library is, uh, reasonably sparse at the moment. So the solutions will tend to rely on JavaScript interop, or involve rewriting basic functionality, and it's not all that representative of how I'd like Raven to look. But it might be fun to see some of the nuts and bolts.
 
-Jump to [Day One](#day-one), [Day Two](#day-two), [Day Three](#day-three), [Day Four](#day-four), [Day Five](#day-five), [Day Six](#day-six).
+Jump to [Day One](#day-one), [Day Two](#day-two), [Day Three](#day-three), [Day Four](#day-four), [Day Five](#day-five), [Day Six](#day-six), [Day Seven](#day-seven).
 
 ## Day One
 
@@ -760,5 +760,98 @@ show total(transpose(load("06.txt")))
 ```
 
 This code is getting real ugly, though. I'm looking forward to having more collection operators and such, so I can rewrite this in a less low level style.
+
+## Day Seven
+
+[The puzzle](https://adventofcode.com/2025/day/7). We have to simulate the path of a light beam which starts at `S` and gets split at every `^`.
+
+```raven
+input = """
+  .......S.......
+  ...............
+  .......^.......
+  ...............
+  ......^.^......
+  ...............
+  .....^.^.^.....
+  ...............
+  ....^.^...^....
+  ...............
+  ...^.^...^.^...
+  ...............
+  ..^...^.....^..
+  ...............
+  .^.^.^.^.^...^.
+  ...............
+  """
+```
+
+We don't need to generate the fancy diagrams the puzzle demo uses. It's enough to keep a single state vector which represents where the beam is at each row; a boolean tells us if the beam exists in a given cell. Here's the logic:
+
+```raven
+fn split(string, by) {
+  map(js(string).split(by).filter(js.Boolean), String)
+}
+
+fn run(input) {
+  layout = split(input, "\n")
+  next = for i = range(1, length(layout[1])) { widen(false) }
+  split = 0
+  for row = layout {
+    last = next
+    for i = range(1, length(row)) {
+      if row[i] == c"S" {
+        next[i] = true
+      } else if (row[i] == c"^") && last[i] {
+        next[i] = false
+        next[i-1] = true
+        next[i+1] = true
+        split = split + 1
+      }
+    }
+  }
+  return split
+}
+
+show run(input)
+show run(load("07.txt"))
+```
+
+**Part two** is for once a simple extension. To count the number of paths, we just replace the boolean with a count of all the paths up to that point. `S` of course starts with one path; if $N$ paths hit a splitter, it creates $N$ ways to get to either side; and if there are already $M$ paths in that spot, it just accumulates, $N + M$. The code is if anything a little simpler for being more general.
+
+```raven
+fn run(input) {
+  layout = split(input, "\n")
+  next = for i = range(1, length(layout[1])) { widen(0) }
+  for row = layout {
+    last = next
+    for i = range(1, length(row)) {
+      if row[i] == c"S" {
+        next[i] = 1
+      } else if row[i] == c"^" {
+        next[i] = 0
+        next[i-1] = next[i-1] + last[i]
+        next[i+1] = next[i+1] + last[i]
+      }
+    }
+  }
+  return next
+}
+
+run(input)
+```
+
+Then we sum.
+
+```raven
+fn sum(xs) {
+  total = 0
+  for x = xs { total = total + x }
+  return total
+}
+
+show sum(run(input))
+show sum(run(load("07.txt")))
+```
 
 That's all for now!
