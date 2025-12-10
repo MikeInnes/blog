@@ -9,7 +9,7 @@ I'm taking a crack at solving [Advent of Code](https://adventofcode.com/) using 
 
 Raven's standard library is, uh, reasonably sparse at the moment. So the solutions will tend to rely on JavaScript interop, or involve rewriting basic functionality, and it's not all that representative of how I'd like Raven to look. But it might be fun to see some of the nuts and bolts.
 
-Go straight to [Day One](#day-one), [Day Two](#day-two), [Day Three](#day-three), [Day Four](#day-four), [Day Five](#day-five).
+Jump to [Day One](#day-one), [Day Two](#day-two), [Day Three](#day-three), [Day Four](#day-four), [Day Five](#day-five), [Day Six](#day-six).
 
 ## Day One
 
@@ -559,7 +559,7 @@ show countFresh(parse(input)...)
 show countFresh(parse(load("05.txt"))...)
 ```
 
-**Part two** makes things trickier – we now have to count how many valid IDs there are in total, and brute force is no longer an option. (There are up to 562,817,005,870,729 valid IDs in my input file, which would take a week to check even if each ID only takes a nanosecond.)
+**Part two** makes things trickier – we now have to count how many valid IDs there are in total, and brute force is no longer an option. (There are up to 562,817,005,870,729 IDs in my input file, which would take a week to check even at a nanosecond each.)
 
 So we instead need to add up the length of all the ranges. That should be simple, but the problem is double counting: in our original input, ranges `10-14` (length 5) and `12-18` (length 7) only contribute 9 total IDs (not 12), because IDs `12`, `13` and `14` are covered by both.
 
@@ -636,5 +636,129 @@ show count(parse(load("05.txt"))[1])
 ```
 
 Raven's lack of built-in data structures, or library functions like `sort`, is starting to feel limiting – though that perhaps inspires more creative solutions, too. We'll see how much further we can get.
+
+## Day Six
+
+[The puzzle](https://adventofcode.com/2025/day/6). We're doing a bunch of sums which, for inconvenience, are stored as columns.
+
+```raven
+input = """
+  123 328  51 64
+   45 64  387 23
+    6 98  215 314
+  *   +   *   +
+  """
+```
+
+It's easiest to parse this as a table (list of rows) as normal:
+
+```raven
+fn split(string, by) {
+  map(js(string).split(by).filter(js.Boolean), String)
+}
+
+fn parse(input) {
+  lines = split(input, "\n")
+  for i = range(1, length(lines)) {
+    split(lines[i], r`\s+`)
+  }
+}
+
+parse(input)
+```
+
+Then we transpose the table, going from lists of rows to lists of columns.
+
+```raven
+fn transpose(xs) {
+  for col = range(1, length(xs[1])) {
+    for row = range(1, length(xs)) {
+      xs[row][col]
+    }
+  }
+}
+
+transpose(parse(input))
+```
+
+Then we do our sums, parsing integers and operators as we go.
+
+
+```raven
+fn parseInt(s) { Int64(js.parseInt(s)) }
+
+fn total(ps) {
+  sum = 0
+  for p = ps {
+    result = parseInt(p[1])
+    for i = range(2, length(p)-1) {
+      if p[length(p)] == "+" {
+        result = result + parseInt(p[i])
+      } else {
+        result = result * parseInt(p[i])
+      }
+    }
+    sum = sum + result
+  }
+  return sum
+}
+
+show total(transpose(parse(input)))
+show total(transpose(parse(load("06.txt"))))
+```
+
+**Part two** tells us the numbers themselves are in columns, top to bottom. So the first result is not $123 \times 45 \times 6$ but $1 \times 24 \times 356$. (The puzzle specifies right-to-left, but that's a red herring – for addition and multiplication, the order doesn't matter.)
+
+In this case, it's easiest to transpose the entire string character by character, to turn those columns into rows.[^cheat]
+
+[^cheat]: I'm cheating the tiniest bit here. The length of the input rows is uneven due to spaces at the end getting trimmed; we should really find the max length across all lines. But `lines[3]` happens to be longest in both the dummy and real input data, so we can just use that.
+
+```raven
+fn transpose(s) {
+  lines = split(s, "\n")
+  t = ""
+  for col = range(1, length(lines[3])) {
+    for row = range(1, length(lines)) {
+      if col <= length(lines[row]) {
+        t = concat(t, string(lines[row][col]))
+      }
+    }
+    t = concat(t, "\n")
+  }
+  return t
+}
+
+print(transpose(input))
+```
+
+That output is weird-looking, but it's easy enough to parse out the numbers and operators for the result.
+
+```raven
+fn first(xs) { nth(xs, 1) }
+
+fn total(input) {
+  sum = 0
+  ps = split(input, r`\n\s*\n`)
+  for p = ps {
+    [op] = first(matches(p, r`[+*]`))
+    xs = for m = matches(p, r`\d+`) { parseInt(m[1]) }
+    result = xs[1]
+    for i = range(2, length(xs)) {
+      if op == "+" {
+        result = result + xs[i]
+      } else {
+        result = result * xs[i]
+      }
+    }
+    sum = sum + result
+  }
+  return sum
+}
+
+show total(transpose(input))
+show total(transpose(load("06.txt")))
+```
+
+This code is getting real ugly, though. I'm looking forward to having more collection operators and such, so I can rewrite this in a less low level style.
 
 That's all for now!
