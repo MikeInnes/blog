@@ -117,8 +117,7 @@ You can define your own compound types that work with pattern matching, and they
 bundle Vec2D(x, y)
 
 fn magnitude(Vec2D(x, y)) {
-  # TODO built-in sqrt :)
-  Float64(js.Math.sqrt((x^2) + (y^2)))
+  sqrt(x^2 + y^2)
 }
 
 magnitude(Vec2D(2, 3))
@@ -130,7 +129,7 @@ Raven uses multiple dispatch, which means that we can define multiple signatures
 bundle Vec3D(x, y, z)
 
 fn magnitude(Vec3D(x, y, z)) {
-  Float64(js.Math.sqrt((x^2) + (y^2) + (z^2)))
+  sqrt(x^2 + y^2 + z^2)
 }
 
 show magnitude(Vec2D(2, 3))
@@ -163,7 +162,7 @@ In these examples we've used pattern matching right in the argument list. We cou
 ```raven
 fn magnitude(vec: Vec2D) {
   Vec2D(x, y) = vec
-  Float64(js.Math.sqrt((x^2) + (y^2)))
+  sqrt(x^2 + y^2)
 }
 
 magnitude(Vec2D(2, 3))

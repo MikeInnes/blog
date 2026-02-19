@@ -132,7 +132,7 @@ fn password(codes) {
   for x = codes {
     pos2 = pos + x
     zs = zs + abs(div(pos2, 100))
-    if ((pos > 0) && (pos2 <= 0)) { zs = zs + 1 }
+    if pos > 0 && pos2 <= 0 { zs = zs + 1 }
     pos = mod(pos2, 100)
   }
   return zs
@@ -310,8 +310,8 @@ total
 fn joltage(digits, n) {
   j = 0
   while n > 0 {
-    i = argmax(slice(digits, 1, length(digits) - (n - 1)))
-    j = (10*j) + digits[i]
+    i = argmax(slice(digits, 1, length(digits) - n + 1))
+    j = 10*j + digits[i]
     digits = slice(digits, i+1, length(digits))
     n = n - 1
   }
@@ -373,9 +373,6 @@ slice(input, range(2, 4), range(5, 7))
 Which lets us get the box around a given cell.
 
 ```raven
-fn max(x, y) { if x >= y { x } else { y } }
-fn min(x, y) { if x <= y { x } else { y } }
-
 fn neighbours(i, N) { range(max(1, i-1), min(N, i+1)) }
 
 N = length(input)
@@ -418,9 +415,9 @@ fn accessible(input) {
   total = 0
   for i = range(1, N) {
     for j = range(1, M) {
-      if not(paper?(input[i][j])) { continue }
+      if !paper?(input[i][j]) { continue }
       box = slice(input, neighbours(i, N), neighbours(j, M))
-      if (count(flatMap(box), paper?)-1) < 4 { total = total + 1 }
+      if count(flatMap(box), paper?) - 1 < 4 { total = total + 1 }
     }
   }
   return total
@@ -542,7 +539,7 @@ There are cleverer methods, but for now it's entirely reasonable to check every 
 fn fresh?(ranges, id) {
   for range = ranges {
     [a, b] = range
-    if (a <= id) && (id <= b) { return true }
+    if a <= id && id <= b { return true }
   }
   return false
 }
@@ -567,7 +564,7 @@ We can address this by filtering out all the ranges that overlap the one we're i
 
 ```raven
 fn disjoint?([a1, a2], [b1, b2]) {
-  (b2 < a1) || (b1 > a2)
+  b2 < a1 || b1 > a2
 }
 
 fn overlapping(rs, range) {
@@ -802,7 +799,7 @@ fn run(input) {
     for i = range(1, length(row)) {
       if row[i] == c"S" {
         next[i] = true
-      } else if (row[i] == c"^") && last[i] {
+      } else if row[i] == c"^" && last[i] {
         next[i] = false
         next[i-1] = true
         next[i+1] = true
